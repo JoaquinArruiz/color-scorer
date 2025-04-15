@@ -7,11 +7,11 @@ export const CalendarComponent = () => {
 
   return (
     <div
+      className="w-full p-3 rounded-lg flex items-center justify-center"
       style={{
         backgroundColor: getHexString(color.color2),
-        padding: "0.75rem",
-        borderRadius: "0.5rem",
         color: getHexString(color.color1),
+        border: `1px solid ${getHexString(color.color1)}`,
       }}
     >
       <Calendar

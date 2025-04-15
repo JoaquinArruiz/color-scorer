@@ -23,10 +23,9 @@ export const CommandComponent = () => {
 
   return (
     <div
-      className="flex items-center justify-center w-full "
+      className="flex items-center justify-center w-full"
       style={{
         backgroundColor: getHexString(color.color2),
-        padding: "0.75rem",
         borderRadius: "0.5rem",
         color: getHexString(color.color1),
       }}

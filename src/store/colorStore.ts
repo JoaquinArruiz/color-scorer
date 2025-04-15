@@ -55,11 +55,15 @@ export const getRgbaString = (color: Color): string => {
   return `rgba(${color.r},${color.g},${color.b},${color.a})`;
 };
 
-export const getHexString = (color: Color): string => {
+export const getHexString = (color: Color, transparency?: number): string => {
   const r = color.r.toString(16).padStart(2, "0");
   const g = color.g.toString(16).padStart(2, "0");
   const b = color.b.toString(16).padStart(2, "0");
-  return `#${r}${g}${b}`;
+  const a = Math.round(color.a * 255)
+    .toString(16)
+    .padStart(2, "0");
+
+  return `#${r}${g}${b}${transparency ? a : ""}`;
 };
 
 // Export the useStore hook directly

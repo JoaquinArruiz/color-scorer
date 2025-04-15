@@ -93,6 +93,7 @@ export const ChartComponent1 = () => {
                   borderColor: getHexString(color.color1),
                   color: getHexString(color.color1),
                 }}
+                className="bg-black/90"
               />
             )}
           />
@@ -146,6 +147,7 @@ export const ChartComponent2 = () => {
                   borderColor: getHexString(color.color1),
                   color: getHexString(color.color1),
                 }}
+                className="bg-black/90"
               />
             )}
           />
@@ -200,6 +202,7 @@ export const ChartComponent3 = () => {
                   borderColor: getHexString(color.color1),
                   color: getHexString(color.color1),
                 }}
+                className="bg-black/90"
               />
             )}
           />
@@ -268,10 +271,9 @@ export const ChartComponent4 = () => {
                 active={active}
                 payload={payload}
                 style={{
-                  backgroundColor: getHexString(color.color2),
                   borderColor: getHexString(color.color1),
-                  color: getHexString(color.color1),
                 }}
+                className="bg-black/90"
               />
             )}
           />

@@ -15,6 +15,10 @@ import {
   ChartComponent4,
 } from "@/components/showcase/chart";
 import { CommandComponent } from "@/components/showcase/command";
+import { SliderComponent } from "@/components/showcase/slider";
+import { ProgressComponent } from "@/components/showcase/progress";
+import { InputComponent } from "@/components/showcase/input";
+import { InputOTPComponent } from "@/components/showcase/input-otp";
 import PantoneLogo from "@/components/easter-eggs/PantoneLogo";
 import { usePantoneMatch } from "@/hooks/usePantoneMatch";
 
@@ -26,11 +30,9 @@ function App() {
   const matchedColor = usePantoneMatch();
 
   return (
-    <div className="text-center px-4 space-y-5 max-w-[1024px] mx-auto">
-      {/* Pantone Easter Egg */}
+    <div className="text-center pt-2 px-4 space-y-5 max-w-[1024px] mx-auto">
       <PantoneLogo matchedColor={matchedColor} />
 
-      {/* Badge and Breadcrumb row */}
       <div className="flex flex-col mdlg:flex-row gap-2 w-full mdlg:justify-between items-center">
         <BreadcrumComponent />
         <div className="flex gap-2">
@@ -61,6 +63,10 @@ function App() {
             <DialogComponent />
             <CheckboxComponent />
           </div>
+          <SliderComponent />
+          <ProgressComponent />
+          <InputComponent />
+          <InputOTPComponent />
           <CommandComponent />
         </div>
 
