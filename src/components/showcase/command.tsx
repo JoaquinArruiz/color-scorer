@@ -69,7 +69,12 @@ export const CommandComponent = () => {
               <span>Settings</span>
             </CommandItem>
           </CommandGroup>
-          <hr className="text-gray-500 mx-2" />
+          <CommandSeparator
+            className="mx-2"
+            style={{
+              backgroundColor: getHexString(color.color1),
+            }}
+          />
           <CommandGroup heading="Settings">
             <CommandItem>
               <User />

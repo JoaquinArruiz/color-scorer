@@ -8,6 +8,7 @@ import { DialogComponent } from "@/components/showcase/dialog";
 import { CardComponent } from "@/components/showcase/card";
 import { CheckboxComponent } from "@/components/showcase/checkbox";
 import { MenubarComponent } from "@/components/showcase/menubar";
+import { SelectComponent } from "@/components/showcase/select";
 import {
   ChartComponent1,
   ChartComponent2,
@@ -33,11 +34,12 @@ function App() {
     <div className="text-center pt-2 px-4 space-y-5 max-w-[1024px] mx-auto">
       <PantoneLogo matchedColor={matchedColor} />
 
-      <div className="flex flex-col mdlg:flex-row gap-2 w-full mdlg:justify-between items-center">
+      <div className="flex flex-col xl:flex-row gap-2 w-full xl:justify-between items-center">
         <BreadcrumComponent />
         <div className="flex gap-2">
           <BadgeComponent />
           <BadgeComponent border />
+          <SelectComponent />
         </div>
         <div className="flex gap-2">
           <ButtonComponent />
@@ -46,18 +48,15 @@ function App() {
         </div>
       </div>
 
-      {/* Main three-column grid layout */}
-      <div className="grid grid-cols-1 mdlg:grid-cols-3 gap-4 w-full">
-        {/* First column */}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 w-full">
         <div className="flex flex-col gap-4 items-center">
           <AlertComponent />
-          <div className="flex flex-col 3xl:flex-row gap-4 mdlg:items-center">
+          <div className="flex flex-col 3xl:flex-row gap-4 xl:items-center">
             <CalendarComponent />
             <CardComponent />
           </div>
         </div>
 
-        {/* Second column */}
         <div className="flex flex-col gap-4 items-center">
           <div className="flex gap-4 items-center">
             <DialogComponent />
@@ -70,7 +69,6 @@ function App() {
           <CommandComponent />
         </div>
 
-        {/* Third column */}
         <div className="flex flex-col gap-4 items-center">
           <MenubarComponent />
           <ChartComponent4 />

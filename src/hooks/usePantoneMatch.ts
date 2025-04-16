@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import { useColor1, useColor2, getHexString } from "@/store/colorStore";
 import { pantoneColors } from "@/data/pantoneColors";
 
-// Function to check if two hex colors are similar (allowing for some tolerance)
 const areColorsSimilar = (
   color1: string,
   color2: string,
   tolerance = 5
 ): boolean => {
-  // Convert hex to RGB
   const hex1 = color1.replace("#", "");
   const hex2 = color2.replace("#", "");
 
@@ -20,7 +18,6 @@ const areColorsSimilar = (
   const g2 = parseInt(hex2.substring(2, 4), 16);
   const b2 = parseInt(hex2.substring(4, 6), 16);
 
-  // Calculate difference
   const rDiff = Math.abs(r1 - r2);
   const gDiff = Math.abs(g1 - g2);
   const bDiff = Math.abs(b1 - b2);
@@ -40,7 +37,7 @@ export const usePantoneMatch = () => {
     const color1Hex = getHexString(color1);
     const color2Hex = getHexString(color2);
 
-    // Check if either color matches a Pantone color
+    // check if either color matches a Pantone color
     for (const pantoneColor of pantoneColors) {
       if (
         areColorsSimilar(color1Hex, pantoneColor.hex) ||
@@ -54,7 +51,6 @@ export const usePantoneMatch = () => {
       }
     }
 
-    // No match found
     setMatchedColor(null);
   }, [color1, color2]);
 

@@ -19,7 +19,6 @@ const initialState: ColorState = {
 
 export const colorStore = new Store<ColorState>(initialState);
 
-// Helper functions for updating colors
 export const setColor1 = (color: Color) => {
   colorStore.setState((state) => ({
     ...state,
@@ -34,7 +33,7 @@ export const setColor2 = (color: Color) => {
   }));
 };
 
-// Reset colors to black and white
+// reset colors to black and white
 export const resetColors = () => {
   colorStore.setState((state) => ({
     ...state,
@@ -66,10 +65,8 @@ export const getHexString = (color: Color, transparency?: number): string => {
   return `#${r}${g}${b}${transparency ? a : ""}`;
 };
 
-// Export the useStore hook directly
 export { useStore };
 
-// Custom selector hooks
 export function useColor1() {
   return useStore(colorStore, (state) => state.color1);
 }
@@ -78,7 +75,6 @@ export function useColor2() {
   return useStore(colorStore, (state) => state.color2);
 }
 
-// Full store state hook
 export function useColorStore() {
   return useStore(colorStore, (state) => state);
 }

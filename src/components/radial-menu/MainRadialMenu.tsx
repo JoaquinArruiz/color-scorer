@@ -11,13 +11,10 @@ import {
 } from "@/store/colorStore";
 
 export const MainRadialMenu = () => {
-  const [showColorPicker1, setShowColorPicker1] = useState(false);
-  const [showColorPicker2, setShowColorPicker2] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(false);
 
-  // Use the store instead of local state
   const colors = useColorStore();
 
-  // Common styles for radial menu items
   const menuItemStyles = {
     iconContainer: "flex w-full h-full justify-center items-center group",
     icon: "group-hover:fill-white text-white",
@@ -25,50 +22,33 @@ export const MainRadialMenu = () => {
       "bg-black/90 text-white hover:bg-black/80 border-1 border-white",
   };
 
-  const handleColor1Click = () => {
-    setShowColorPicker1(true);
-  };
-
-  const handleColor2Click = () => {
-    setShowColorPicker2(true);
+  const handleColorPickerClick = () => {
+    setShowColorPicker(true);
   };
 
   const radialMenuItems = [
     {
-      id: "color1",
+      id: "color-picker",
       icon: (
         <div className={menuItemStyles.iconContainer}>
           <Palette size={32} className={menuItemStyles.icon} />
           <div
-            className="absolute bottom-0 right-0 w-3 h-3 rounded-full"
+            className="absolute bottom-0 left-0 w-4 h-4 rounded-full ring-1 ring-black"
             style={{
               backgroundColor: getRgbaString(colors.color1),
             }}
           />
-        </div>
-      ),
-      label: "Color 1",
-      color: menuItemStyles.colorClasses,
-      onClick: handleColor1Click,
-      closeOnClick: false,
-      layer: 5,
-    },
-    {
-      id: "color2",
-      icon: (
-        <div className={menuItemStyles.iconContainer}>
-          <Palette size={32} className={menuItemStyles.icon} />
           <div
-            className="absolute bottom-0 right-0 w-3 h-3 rounded-full"
+            className="absolute bottom-0 right-0 w-4 h-4 rounded-full ring-1 ring-black"
             style={{
               backgroundColor: getRgbaString(colors.color2),
             }}
           />
         </div>
       ),
-      label: "Color 2",
+      label: "Colors",
       color: menuItemStyles.colorClasses,
-      onClick: handleColor2Click,
+      onClick: handleColorPickerClick,
       closeOnClick: false,
       layer: 5,
     },
@@ -83,7 +63,7 @@ export const MainRadialMenu = () => {
       color: menuItemStyles.colorClasses,
       onClick: swapColors,
       closeOnClick: false,
-      layer: 3,
+      layer: 5,
     },
   ];
 
@@ -103,21 +83,12 @@ export const MainRadialMenu = () => {
         }}
       />
 
-      {showColorPicker1 && (
+      {showColorPicker && (
         <ColorPicker
-          color={colors.color1}
-          onChange={setColor1}
-          onClose={() => setShowColorPicker1(false)}
-          title="Color 1"
-        />
-      )}
-
-      {showColorPicker2 && (
-        <ColorPicker
-          color={colors.color2}
-          onChange={setColor2}
-          onClose={() => setShowColorPicker2(false)}
-          title="Color 2"
+          colors={colors}
+          onChangeColor1={setColor1}
+          onChangeColor2={setColor2}
+          onClose={() => setShowColorPicker(false)}
         />
       )}
     </>
