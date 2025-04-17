@@ -11,7 +11,6 @@ import {
   getHexString,
   setColor1,
   setColor2,
-  type Color,
 } from "@/store/colorStore";
 
 interface SidebarColorPickerProps {

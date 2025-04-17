@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import RadialMenuItem from "./radial-menu-item";
-import { List, X } from "@phosphor-icons/react";
+import { X } from "@phosphor-icons/react";
 import { Brush } from "lucide-react";
 
 export interface RadialMenuItemProps {

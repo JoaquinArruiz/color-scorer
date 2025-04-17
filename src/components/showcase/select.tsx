@@ -6,7 +6,6 @@ import {
   SelectContent,
   SelectItem,
 } from "../ui/select";
-import { CaretDown } from "@phosphor-icons/react";
 
 export const SelectComponent = () => {
   const color = useColorStore();

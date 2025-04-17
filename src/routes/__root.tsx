@@ -34,7 +34,7 @@ export const Route = createRootRoute({
             <div className="">
               <Outlet />
             </div>
-            <TanStackRouterDevtools />
+            {/* <TanStackRouterDevtools /> */}
 
             {!isLandscape && (
               <>
