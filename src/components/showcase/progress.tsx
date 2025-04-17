@@ -4,24 +4,30 @@ import { useEffect, useState } from "react";
 
 export const ProgressComponent = () => {
   const color = useColorStore();
-
   const [progress, setProgress] = useState(0);
-  const handleProgress = (value: number) => {
-    setProgress(value);
-  };
+  const [isHolding, setIsHolding] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
+      if (isHolding) return;
+
       setProgress((prev) => {
         if (prev >= 100) {
-          return 0; // Reset to 0 instead of stopping
+          setIsHolding(true);
+
+          setTimeout(() => {
+            setProgress(0);
+            setIsHolding(false);
+          }, 3000);
+
+          return 100;
         }
         return prev + 1;
       });
     }, 100);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isHolding]);
 
   return (
     <div
@@ -32,7 +38,7 @@ export const ProgressComponent = () => {
         border: `1px solid ${getHexString(color.color1)}`,
       }}
     >
-      <p>Progress: {progress}%</p>
+      {progress >= 100 ? <p>Completed!</p> : <p>Progress: {progress}%</p>}
       <Progress
         value={progress}
         className="w-full"

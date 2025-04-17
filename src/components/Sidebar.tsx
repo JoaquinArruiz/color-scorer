@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowsClockwise } from "@phosphor-icons/react";
 import {
   useColor1,
@@ -7,14 +6,20 @@ import {
   swapColors,
   resetColors,
 } from "@/store/colorStore";
-import { useContrastScore } from "@/hooks/useColor";
+import { useContrastScore, useColorPairSuggestions } from "@/hooks/useColor";
 import { Button } from "@/components/ui/button";
 import SidebarColorPicker from "./SidebarColorPicker";
+import { ColorPairSuggestion } from "./ColorPairSuggestion";
+import { useOrientation } from "@/hooks/useOrientation";
 
 const Sidebar = () => {
   const color1 = useColor1();
   const color2 = useColor2();
+  const orientation = useOrientation();
+  const isLandscape = orientation === "landscape";
+
   const score = useContrastScore(getHexString(color1), getHexString(color2));
+  const colorPairSuggestions = useColorPairSuggestions(color1, color2, score);
 
   const scoreColor =
     score < 4.5
@@ -47,6 +52,23 @@ const Sidebar = () => {
           <h2 className="text-sm font-medium mb-2 text-white/70">Text Color</h2>
           <SidebarColorPicker colorNumber={1} />
         </div>
+
+        {/* Better color pair suggestions - only on landscape (PC) */}
+        {isLandscape && colorPairSuggestions.length > 0 && (
+          <div className="mt-4 pt-3 border-t border-white/20">
+            <h2 className="text-sm font-medium mb-2 text-white/70">
+              Better Color Combinations
+            </h2>
+            <div className="space-y-1 max-h-48 overflow-y-auto pr-2">
+              {colorPairSuggestions.map((suggestion, index) => (
+                <ColorPairSuggestion
+                  key={`pair-${index}`}
+                  suggestion={suggestion}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="flex gap-2 mt-4">
           <Button

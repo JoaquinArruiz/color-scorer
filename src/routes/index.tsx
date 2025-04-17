@@ -31,7 +31,7 @@ function App() {
   const matchedColor = usePantoneMatch();
 
   return (
-    <div className="text-center pt-2 px-4 space-y-5 max-w-[1024px] mx-auto">
+    <div className="text-center p-4 space-y-5 max-w-[1024px] mx-auto">
       <PantoneLogo matchedColor={matchedColor} />
 
       <div className="flex flex-col xl:flex-row gap-2 w-full xl:justify-between items-center">
