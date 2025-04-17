@@ -37,7 +37,7 @@ pnpm install
 pnpm run dev
 ```
 
-Then open [http://localhost:5173](http://localhost:3001) in your browser to see the application running.
+Then open [http://localhost:3001/color-scorer](http://localhost:3001/color-scorer) in your browser to see the application running.
 
 ## Building For Production
 
