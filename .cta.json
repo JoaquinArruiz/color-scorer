@@ -1,6 +1,6 @@
 {
   "framework": "react",
-  "projectName": "color-matcher",
+  "projectName": "color-scorer",
   "typescript": true,
   "tailwind": true,
   "packageManager": "pnpm",

@@ -1,10 +1,19 @@
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
+import {
+  RouterProvider,
+  createMemoryHistory,
+  createRouter,
+} from "@tanstack/react-router";
 
 import { routeTree } from "./routeTree.gen";
 
 import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
+
+const memoryHistory = createMemoryHistory({
+  initialEntries: ["/"],
+  initialIndex: 0,
+});
 
 const router = createRouter({
   routeTree,
@@ -13,6 +22,7 @@ const router = createRouter({
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
+  history: memoryHistory,
 });
 
 declare module "@tanstack/react-router" {

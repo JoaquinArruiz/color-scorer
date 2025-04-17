@@ -1,5 +1,5 @@
 {
-  "name": "color-matcher",
+  "name": "color-scorer",
   "private": true,
   "type": "module",
   "scripts": {
