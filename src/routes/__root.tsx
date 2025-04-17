@@ -1,5 +1,5 @@
 import { Outlet, createRootRoute } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+// import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import { MainRadialMenu } from "@/components/radial-menu/MainRadialMenu";
 import ActionBar from "@/components/actionBar";
