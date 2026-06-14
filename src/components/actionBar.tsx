@@ -5,7 +5,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useColor1, useColor2, getHexString } from "@/store/colorStore";
+import { useColor1, useColor2 } from "@/store/colorStore";
 import { useContrastScore } from "@/hooks/useColor";
 
 import { Repeat } from "@phosphor-icons/react";
@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 const ActionBar = () => {
   const color1 = useColor1();
   const color2 = useColor2();
-  const score = useContrastScore(getHexString(color1), getHexString(color2));
+  const score = useContrastScore(color1, color2);
   const scoreColor =
     score < 4.5
       ? "text-red-500"

@@ -2,7 +2,6 @@ import { ArrowsClockwise } from "@phosphor-icons/react";
 import {
   useColor1,
   useColor2,
-  getHexString,
   swapColors,
   resetColors,
 } from "@/store/colorStore";
@@ -18,7 +17,7 @@ const Sidebar = () => {
   const orientation = useOrientation();
   const isLandscape = orientation === "landscape";
 
-  const score = useContrastScore(getHexString(color1), getHexString(color2));
+  const score = useContrastScore(color1, color2);
   const colorPairSuggestions = useColorPairSuggestions(color1, color2, score);
 
   const scoreColor =

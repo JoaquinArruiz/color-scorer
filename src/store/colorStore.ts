@@ -1,11 +1,8 @@
 import { Store, useStore } from "@tanstack/react-store";
+import { BLACK, WHITE, type Color } from "@/lib/color";
 
-export interface Color {
-  r: number;
-  g: number;
-  b: number;
-  a: number;
-}
+export type { Color } from "@/lib/color";
+export { getHexString, getRgbaString } from "@/lib/color";
 
 interface ColorState {
   color1: Color;
@@ -13,8 +10,8 @@ interface ColorState {
 }
 
 const initialState: ColorState = {
-  color1: { r: 0, g: 0, b: 0, a: 1 }, // Black
-  color2: { r: 255, g: 255, b: 255, a: 1 }, // White
+  color1: BLACK,
+  color2: WHITE,
 };
 
 export const colorStore = new Store<ColorState>(initialState);
@@ -37,8 +34,8 @@ export const setColor2 = (color: Color) => {
 export const resetColors = () => {
   colorStore.setState((state) => ({
     ...state,
-    color1: { r: 0, g: 0, b: 0, a: 1 },
-    color2: { r: 255, g: 255, b: 255, a: 1 },
+    color1: BLACK,
+    color2: WHITE,
   }));
 };
 
@@ -48,21 +45,6 @@ export const swapColors = () => {
     color1: state.color2,
     color2: state.color1,
   }));
-};
-
-export const getRgbaString = (color: Color): string => {
-  return `rgba(${color.r},${color.g},${color.b},${color.a})`;
-};
-
-export const getHexString = (color: Color, transparency?: number): string => {
-  const r = color.r.toString(16).padStart(2, "0");
-  const g = color.g.toString(16).padStart(2, "0");
-  const b = color.b.toString(16).padStart(2, "0");
-  const a = Math.round(color.a * 255)
-    .toString(16)
-    .padStart(2, "0");
-
-  return `#${r}${g}${b}${transparency ? a : ""}`;
 };
 
 export { useStore };
