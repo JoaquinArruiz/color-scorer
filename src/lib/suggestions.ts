@@ -107,13 +107,18 @@ export const getBetterColorPairs = (
   }
 
   if (suggestions.length < limit) {
-    for (let i = 0; i < 5; i++) {
-      const hueShift = Math.floor(Math.random() * 360);
-      const textLightness = Math.random() * 0.6 - 0.3; // -0.3 to 0.3
-      const bgLightness = Math.random() * 0.6 - 0.3; // -0.3 to 0.3
+    // fixed hue/lightness variations so the list stays stable between renders
+    const variations = [
+      { hue: 60, text: -0.3, bg: 0.3 },
+      { hue: 135, text: 0.3, bg: -0.3 },
+      { hue: 210, text: -0.25, bg: 0.25 },
+      { hue: 285, text: 0.25, bg: -0.25 },
+      { hue: 330, text: -0.3, bg: 0.2 },
+    ];
 
-      const newText = adjustColor(textColor, hueShift, 0, textLightness);
-      const newBg = adjustColor(bgColor, hueShift + 180, 0, bgLightness);
+    for (const variation of variations) {
+      const newText = adjustColor(textColor, variation.hue, 0, variation.text);
+      const newBg = adjustColor(bgColor, variation.hue + 180, 0, variation.bg);
 
       addPairIfBetter(newText, newBg);
     }
