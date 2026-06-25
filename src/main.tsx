@@ -8,7 +8,6 @@ import {
 import { routeTree } from "./routeTree.gen";
 
 import "./styles.css";
-import reportWebVitals from "./reportWebVitals.ts";
 
 const memoryHistory = createMemoryHistory({
   initialEntries: ["/"],
@@ -36,5 +35,3 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(<RouterProvider router={router} />);
 }
-
-reportWebVitals();
