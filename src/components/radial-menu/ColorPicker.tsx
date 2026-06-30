@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import { Sketch } from "@uiw/react-color";
+import { Sketch, type ColorResult } from "@uiw/react-color";
 import { X, CaretRight, ArrowsClockwise } from "@phosphor-icons/react";
 import { type Color, getHexString, swapColors } from "@/store/colorStore";
 
@@ -25,9 +25,9 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   const activeColor = activeTab === "color1" ? colors.color1 : colors.color2;
   const rgbaString = getHexString(activeColor);
 
-  const handleChange = (color: any) => {
+  const handleChange = (color: ColorResult) => {
     const { r, g, b } = color.rgb;
-    const a = color.rgba.a ?? 1;
+    const { a } = color.rgba;
     if (activeTab === "color1") {
       onChangeColor1({ r, g, b, a });
     } else {

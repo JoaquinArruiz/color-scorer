@@ -4,7 +4,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Sketch } from "@uiw/react-color";
+import { Sketch, type ColorResult } from "@uiw/react-color";
 import {
   useColor1,
   useColor2,
@@ -28,9 +28,9 @@ const SidebarColorPicker: React.FC<SidebarColorPickerProps> = ({
   const color = colorNumber === 1 ? color1 : color2;
   const setColor = colorNumber === 1 ? setColor1 : setColor2;
 
-  const handleChange = (color: any) => {
+  const handleChange = (color: ColorResult) => {
     const { r, g, b } = color.rgb;
-    const a = color.rgba.a ?? 1;
+    const { a } = color.rgba;
     setColor({ r, g, b, a });
   };
 
