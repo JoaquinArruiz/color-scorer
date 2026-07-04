@@ -1,4 +1,4 @@
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 import {
   Select,
   SelectTrigger,
@@ -8,25 +8,25 @@ import {
 } from "../ui/select";
 
 export const SelectComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   return (
     <Select>
       <SelectTrigger
         className="min-w-[120px]"
         style={{
-          border: `1px solid ${getHexString(color.color1)}`,
-          backgroundColor: getHexString(color.color2),
-          color: getHexString(color.color1),
+          border: `1px solid ${text}`,
+          backgroundColor: bg,
+          color: text,
         }}
       >
         <SelectValue placeholder="Select option" />
       </SelectTrigger>
       <SelectContent
         style={{
-          border: `1px solid ${getHexString(color.color1)}`,
-          backgroundColor: getHexString(color.color2),
-          color: getHexString(color.color1),
+          border: `1px solid ${text}`,
+          backgroundColor: bg,
+          color: text,
         }}
       >
         <SelectItem value="option1">Option 1</SelectItem>

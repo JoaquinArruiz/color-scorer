@@ -1,15 +1,15 @@
 import { Slider } from "@/components/ui/slider";
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 
 export const SliderComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   return (
     <div
       className="w-full p-6 rounded-md"
       style={{
-        backgroundColor: getHexString(color.color2),
-        color: getHexString(color.color1),
+        backgroundColor: bg,
+        color: text,
       }}
     >
       <Slider
@@ -18,7 +18,7 @@ export const SliderComponent = () => {
         step={1}
         className="w-full bg-amber-300 rounded-3xl"
         style={{
-          backgroundColor: `${getHexString(color.color1)}20`,
+          backgroundColor: `${text}20`,
         }}
       />
     </div>

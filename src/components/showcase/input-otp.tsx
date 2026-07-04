@@ -4,18 +4,18 @@ import {
   InputOTPSlot,
   InputOTPSeparator,
 } from "@/components/ui/input-otp";
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 
 export const InputOTPComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   return (
     <div
       className="w-full p-6 rounded-lg flex items-center justify-center"
       style={{
-        backgroundColor: getHexString(color.color2),
-        color: getHexString(color.color1),
-        border: `1px solid ${getHexString(color.color1)}`,
+        backgroundColor: bg,
+        color: text,
+        border: `1px solid ${text}`,
       }}
     >
       <InputOTP maxLength={6}>
@@ -25,15 +25,15 @@ export const InputOTPComponent = () => {
               key={index}
               index={index}
               style={{
-                borderColor: getHexString(color.color1),
-                color: getHexString(color.color1),
+                borderColor: text,
+                color: text,
               }}
             />
           ))}
         </InputOTPGroup>
         <InputOTPSeparator
           style={{
-            color: getHexString(color.color1),
+            color: text,
           }}
         />
         <InputOTPGroup>
@@ -42,8 +42,8 @@ export const InputOTPComponent = () => {
               key={index + 3}
               index={index + 3}
               style={{
-                borderColor: getHexString(color.color1),
-                color: getHexString(color.color1),
+                borderColor: text,
+                color: text,
               }}
             />
           ))}

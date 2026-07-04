@@ -8,7 +8,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 import {
   Calendar,
   CreditCard,
@@ -19,33 +19,33 @@ import {
 import { Settings } from "lucide-react";
 
 export const CommandComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   return (
     <div
       className="flex items-center justify-center w-full"
       style={{
-        backgroundColor: getHexString(color.color2),
+        backgroundColor: bg,
         borderRadius: "0.5rem",
-        color: getHexString(color.color1),
+        color: text,
       }}
     >
       <Command
         className="rounded-lg border"
         style={{
-          backgroundColor: getHexString(color.color2),
+          backgroundColor: bg,
         }}
       >
         <CommandInput
           style={{
-            color: getHexString(color.color1),
+            color: text,
           }}
           placeholder="Type a command or search..."
         />
         <CommandList>
           <CommandEmpty
             style={{
-              color: getHexString(color.color1),
+              color: text,
             }}
           >
             No results found.
@@ -53,7 +53,7 @@ export const CommandComponent = () => {
           <CommandGroup
             heading="Suggestions"
             style={{
-              color: getHexString(color.color1),
+              color: text,
             }}
           >
             <CommandItem>
@@ -72,7 +72,7 @@ export const CommandComponent = () => {
           <CommandSeparator
             className="mx-2"
             style={{
-              backgroundColor: getHexString(color.color1),
+              backgroundColor: text,
             }}
           />
           <CommandGroup heading="Settings">

@@ -1,4 +1,4 @@
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
 import {
   Line,
@@ -45,11 +45,11 @@ const multiLineData = [
 ];
 
 export const ChartComponent1 = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   const config = {
     line1: {
-      color: getHexString(color.color1),
+      color: text,
     },
   };
 
@@ -57,29 +57,29 @@ export const ChartComponent1 = () => {
     <div
       className="min-w-53 max-w-96 w-full p-2 border rounded-lg"
       style={{
-        backgroundColor: getHexString(color.color2),
-        borderColor: getHexString(color.color1),
+        backgroundColor: bg,
+        borderColor: text,
       }}
     >
       <ChartContainer config={config}>
         <LineChart data={lineData}>
           <XAxis
             dataKey="name"
-            stroke={getHexString(color.color1)}
-            tick={{ fill: getHexString(color.color1) }}
+            stroke={text}
+            tick={{ fill: text }}
           />
           <YAxis
-            stroke={getHexString(color.color1)}
-            tick={{ fill: getHexString(color.color1) }}
+            stroke={text}
+            tick={{ fill: text }}
           />
           <Line
             type="monotone"
             dataKey="value"
             strokeWidth={2}
-            stroke={getHexString(color.color1)}
+            stroke={text}
             dot={{
-              fill: getHexString(color.color2),
-              stroke: getHexString(color.color1),
+              fill: bg,
+              stroke: text,
               strokeWidth: 2,
             }}
           />
@@ -89,9 +89,9 @@ export const ChartComponent1 = () => {
                 active={active}
                 payload={payload}
                 style={{
-                  backgroundColor: getHexString(color.color2),
-                  borderColor: getHexString(color.color1),
-                  color: getHexString(color.color1),
+                  backgroundColor: bg,
+                  borderColor: text,
+                  color: text,
                 }}
                 className="bg-black/90"
               />
@@ -104,11 +104,11 @@ export const ChartComponent1 = () => {
 };
 
 export const ChartComponent2 = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   const config = {
     bar1: {
-      color: getHexString(color.color1),
+      color: text,
     },
   };
 
@@ -116,25 +116,25 @@ export const ChartComponent2 = () => {
     <div
       className="min-w-53 max-w-96 w-full p-2 border rounded-lg"
       style={{
-        backgroundColor: getHexString(color.color2),
-        borderColor: getHexString(color.color1),
+        backgroundColor: bg,
+        borderColor: text,
       }}
     >
       <ChartContainer config={config}>
         <BarChart data={barData}>
           <XAxis
             dataKey="name"
-            stroke={getHexString(color.color1)}
-            tick={{ fill: getHexString(color.color1) }}
+            stroke={text}
+            tick={{ fill: text }}
           />
           <YAxis
-            stroke={getHexString(color.color1)}
-            tick={{ fill: getHexString(color.color1) }}
+            stroke={text}
+            tick={{ fill: text }}
           />
           <Bar
             dataKey="value"
-            fill={getHexString(color.color1)}
-            stroke={getHexString(color.color1)}
+            fill={text}
+            stroke={text}
             strokeWidth={1}
           />
           <ChartTooltip
@@ -143,9 +143,9 @@ export const ChartComponent2 = () => {
                 active={active}
                 payload={payload}
                 style={{
-                  backgroundColor: getHexString(color.color2),
-                  borderColor: getHexString(color.color1),
-                  color: getHexString(color.color1),
+                  backgroundColor: bg,
+                  borderColor: text,
+                  color: text,
                 }}
                 className="bg-black/90"
               />
@@ -158,11 +158,11 @@ export const ChartComponent2 = () => {
 };
 
 export const ChartComponent3 = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   const config = {
     area1: {
-      color: getHexString(color.color1),
+      color: text,
     },
   };
 
@@ -170,26 +170,26 @@ export const ChartComponent3 = () => {
     <div
       className="min-w-53 max-w-96 w-full p-2 border rounded-lg"
       style={{
-        backgroundColor: getHexString(color.color2),
-        borderColor: getHexString(color.color1),
+        backgroundColor: bg,
+        borderColor: text,
       }}
     >
       <ChartContainer config={config}>
         <AreaChart data={areaData}>
           <XAxis
             dataKey="name"
-            stroke={getHexString(color.color1)}
-            tick={{ fill: getHexString(color.color1) }}
+            stroke={text}
+            tick={{ fill: text }}
           />
           <YAxis
-            stroke={getHexString(color.color1)}
-            tick={{ fill: getHexString(color.color1) }}
+            stroke={text}
+            tick={{ fill: text }}
           />
           <Area
             type="monotone"
             dataKey="value"
-            stroke={getHexString(color.color1)}
-            fill={getHexString(color.color1)}
+            stroke={text}
+            fill={text}
             fillOpacity={0.3}
           />
           <ChartTooltip
@@ -198,9 +198,9 @@ export const ChartComponent3 = () => {
                 active={active}
                 payload={payload}
                 style={{
-                  backgroundColor: getHexString(color.color2),
-                  borderColor: getHexString(color.color1),
-                  color: getHexString(color.color1),
+                  backgroundColor: bg,
+                  borderColor: text,
+                  color: text,
                 }}
                 className="bg-black/90"
               />
@@ -213,14 +213,14 @@ export const ChartComponent3 = () => {
 };
 
 export const ChartComponent4 = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   const config = {
     line1: {
-      color: getHexString(color.color1),
+      color: text,
     },
     line2: {
-      color: getHexString(color.color2),
+      color: bg,
     },
   };
 
@@ -228,29 +228,29 @@ export const ChartComponent4 = () => {
     <div
       className="min-w-53 max-w-96 w-full p-2 border rounded-lg"
       style={{
-        backgroundColor: getHexString(color.color2),
-        borderColor: getHexString(color.color1),
+        backgroundColor: bg,
+        borderColor: text,
       }}
     >
       <ChartContainer config={config}>
         <LineChart data={multiLineData}>
           <XAxis
             dataKey="name"
-            stroke={getHexString(color.color1)}
-            tick={{ fill: getHexString(color.color1) }}
+            stroke={text}
+            tick={{ fill: text }}
           />
           <YAxis
-            stroke={getHexString(color.color1)}
-            tick={{ fill: getHexString(color.color1) }}
+            stroke={text}
+            tick={{ fill: text }}
           />
           <Line
             type="monotone"
             dataKey="value1"
             strokeWidth={2}
-            stroke={getHexString(color.color1)}
+            stroke={text}
             dot={{
-              fill: getHexString(color.color2),
-              stroke: getHexString(color.color1),
+              fill: bg,
+              stroke: text,
               strokeWidth: 2,
             }}
           />
@@ -258,10 +258,10 @@ export const ChartComponent4 = () => {
             type="monotone"
             dataKey="value2"
             strokeWidth={2}
-            stroke={getHexString(color.color1)}
+            stroke={text}
             dot={{
-              fill: getHexString(color.color1),
-              stroke: getHexString(color.color2),
+              fill: text,
+              stroke: bg,
               strokeWidth: 2,
             }}
           />
@@ -271,7 +271,7 @@ export const ChartComponent4 = () => {
                 active={active}
                 payload={payload}
                 style={{
-                  borderColor: getHexString(color.color1),
+                  borderColor: text,
                 }}
                 className="bg-black/90"
               />

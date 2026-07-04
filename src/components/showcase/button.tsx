@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 
 interface ButtonComponentProps {
   noBorder?: boolean;
@@ -10,15 +10,15 @@ const ButtonComponent = ({
   noBorder = false,
   filled = false,
 }: ButtonComponentProps) => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
   return (
     <Button
       style={{
-        border: noBorder ? "none" : `1px solid ${getHexString(color.color1)}`,
+        border: noBorder ? "none" : `1px solid ${text}`,
         backgroundColor: filled
-          ? getHexString(color.color1)
-          : getHexString(color.color2),
-        color: filled ? getHexString(color.color2) : getHexString(color.color1),
+          ? text
+          : bg,
+        color: filled ? bg : text,
       }}
     >
       Button

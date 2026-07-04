@@ -1,4 +1,4 @@
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 import { Badge } from "../ui/badge";
 
 interface BadgeProps {
@@ -6,14 +6,14 @@ interface BadgeProps {
 }
 
 export const BadgeComponent = ({ border }: BadgeProps) => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   return (
     <Badge
       style={{
-        backgroundColor: getHexString(color.color2),
-        color: getHexString(color.color1),
-        border: border ? `2px solid ${getHexString(color.color1)}` : "none",
+        backgroundColor: bg,
+        color: text,
+        border: border ? `2px solid ${text}` : "none",
       }}
     >
       Badge

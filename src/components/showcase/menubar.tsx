@@ -1,4 +1,4 @@
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 import {
   Menubar,
   MenubarContent,
@@ -9,83 +9,83 @@ import {
 } from "../ui/menubar";
 
 export const MenubarComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   return (
     <Menubar
       className="w-full"
       style={{
-        backgroundColor: getHexString(color.color2),
-        borderColor: getHexString(color.color1),
+        backgroundColor: bg,
+        borderColor: text,
       }}
     >
       <MenubarMenu>
-        <MenubarTrigger style={{ color: getHexString(color.color1) }}>
+        <MenubarTrigger style={{ color: text }}>
           File
         </MenubarTrigger>
         <MenubarContent
           style={{
-            backgroundColor: getHexString(color.color2),
-            borderColor: getHexString(color.color1),
+            backgroundColor: bg,
+            borderColor: text,
           }}
         >
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             New Tab
           </MenubarItem>
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             New Window
           </MenubarItem>
           <MenubarSeparator
-            style={{ backgroundColor: getHexString(color.color1) }}
+            style={{ backgroundColor: text }}
           />
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             Share
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
 
       <MenubarMenu>
-        <MenubarTrigger style={{ color: getHexString(color.color1) }}>
+        <MenubarTrigger style={{ color: text }}>
           Edit
         </MenubarTrigger>
         <MenubarContent
           style={{
-            backgroundColor: getHexString(color.color2),
-            borderColor: getHexString(color.color1),
+            backgroundColor: bg,
+            borderColor: text,
           }}
         >
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             Cut
           </MenubarItem>
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             Copy
           </MenubarItem>
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             Paste
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
 
       <MenubarMenu>
-        <MenubarTrigger style={{ color: getHexString(color.color1) }}>
+        <MenubarTrigger style={{ color: text }}>
           View
         </MenubarTrigger>
         <MenubarContent
           style={{
-            backgroundColor: getHexString(color.color2),
-            borderColor: getHexString(color.color1),
+            backgroundColor: bg,
+            borderColor: text,
           }}
         >
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             Zoom In
           </MenubarItem>
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             Zoom Out
           </MenubarItem>
           <MenubarSeparator
-            style={{ backgroundColor: getHexString(color.color1) }}
+            style={{ backgroundColor: text }}
           />
-          <MenubarItem style={{ color: getHexString(color.color1) }}>
+          <MenubarItem style={{ color: text }}>
             Toggle Sidebar
           </MenubarItem>
         </MenubarContent>

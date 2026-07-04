@@ -1,17 +1,17 @@
 import { Calendar } from "@/components/ui/calendar";
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 
 export const CalendarComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
   const date = new Date();
 
   return (
     <div
       className="w-full p-3 rounded-lg flex items-center justify-center"
       style={{
-        backgroundColor: getHexString(color.color2),
-        color: getHexString(color.color1),
-        border: `1px solid ${getHexString(color.color1)}`,
+        backgroundColor: bg,
+        color: text,
+        border: `1px solid ${text}`,
       }}
     >
       <Calendar
@@ -19,10 +19,10 @@ export const CalendarComponent = () => {
         selected={date}
         className="rounded-md"
         styles={{
-          caption_label: { color: getHexString(color.color1) },
-          day: { color: getHexString(color.color1) },
-          nav_button: { color: getHexString(color.color1) },
-          head_cell: { color: getHexString(color.color1) },
+          caption_label: { color: text },
+          day: { color: text },
+          nav_button: { color: text },
+          head_cell: { color: text },
         }}
       />
     </div>

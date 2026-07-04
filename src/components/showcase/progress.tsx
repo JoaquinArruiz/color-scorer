@@ -1,9 +1,9 @@
 import { Progress } from "@/components/ui/progress";
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 import { useEffect, useState } from "react";
 
 export const ProgressComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
   const [progress, setProgress] = useState(0);
   const [isHolding, setIsHolding] = useState(false);
 
@@ -33,9 +33,9 @@ export const ProgressComponent = () => {
     <div
       className="w-full p-4 rounded-lg space-y-2"
       style={{
-        backgroundColor: getHexString(color.color2),
-        color: getHexString(color.color1),
-        border: `1px solid ${getHexString(color.color1)}`,
+        backgroundColor: bg,
+        color: text,
+        border: `1px solid ${text}`,
       }}
     >
       {progress >= 100 ? <p>Completed!</p> : <p>Progress: {progress}%</p>}
@@ -43,7 +43,7 @@ export const ProgressComponent = () => {
         value={progress}
         className="w-full"
         style={{
-          backgroundColor: `${getHexString(color.color1)}20`,
+          backgroundColor: `${text}20`,
         }}
       ></Progress>
     </div>

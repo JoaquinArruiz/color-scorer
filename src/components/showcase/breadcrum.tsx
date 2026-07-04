@@ -1,4 +1,4 @@
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,12 +9,12 @@ import {
 } from "../ui/breadcrumb";
 
 export const BreadcrumComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   return (
     <Breadcrumb
       style={{
-        backgroundColor: getHexString(color.color2),
+        backgroundColor: bg,
         padding: "0.75rem 1rem",
         borderRadius: "0.5rem",
       }}
@@ -24,7 +24,7 @@ export const BreadcrumComponent = () => {
           <BreadcrumbLink
             href="#"
             style={{
-              color: getHexString(color.color1),
+              color: text,
               textDecoration: "none",
             }}
           >
@@ -32,21 +32,21 @@ export const BreadcrumComponent = () => {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator
-          style={{ color: getHexString(color.color1), opacity: 0.6 }}
+          style={{ color: text, opacity: 0.6 }}
         />
         <BreadcrumbItem>
-          <div style={{ color: getHexString(color.color1), opacity: 0.6 }}>
+          <div style={{ color: text, opacity: 0.6 }}>
             ...
           </div>
         </BreadcrumbItem>
         <BreadcrumbSeparator
-          style={{ color: getHexString(color.color1), opacity: 0.6 }}
+          style={{ color: text, opacity: 0.6 }}
         />
         <BreadcrumbItem>
           <BreadcrumbLink
             href="#"
             style={{
-              color: getHexString(color.color1),
+              color: text,
               textDecoration: "none",
             }}
           >
@@ -54,11 +54,11 @@ export const BreadcrumComponent = () => {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator
-          style={{ color: getHexString(color.color1), opacity: 0.6 }}
+          style={{ color: text, opacity: 0.6 }}
         />
         <BreadcrumbItem>
           <BreadcrumbPage
-            style={{ color: getHexString(color.color1), opacity: 0.8 }}
+            style={{ color: text, opacity: 0.8 }}
           >
             Breadcrumb
           </BreadcrumbPage>

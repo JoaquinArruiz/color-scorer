@@ -1,4 +1,4 @@
-import { getHexString, useColorStore } from "@/store/colorStore";
+import { usePreviewColors } from "@/hooks/usePreviewColors";
 import {
   Card,
   CardHeader,
@@ -10,27 +10,27 @@ import {
 import { Button } from "../ui/button";
 
 export const CardComponent = () => {
-  const color = useColorStore();
+  const { text, bg } = usePreviewColors();
 
   return (
     <Card
       style={{
-        backgroundColor: getHexString(color.color2),
-        color: getHexString(color.color1),
+        backgroundColor: bg,
+        color: text,
       }}
       className="w-full"
     >
       <CardHeader>
-        <CardTitle style={{ color: getHexString(color.color1) }}>
+        <CardTitle style={{ color: text }}>
           Color Harmony Explorer
         </CardTitle>
         <CardDescription
-          style={{ color: getHexString(color.color1), opacity: 0.8 }}
+          style={{ color: text, opacity: 0.8 }}
         >
           Discover the perfect color
         </CardDescription>
       </CardHeader>
-      <CardContent style={{ color: getHexString(color.color1) }}>
+      <CardContent style={{ color: text }}>
         <p>
           Experience the dynamic interplay of colors as you adjust the palette.
         </p>
@@ -38,17 +38,17 @@ export const CardComponent = () => {
       <CardFooter className="flex justify-between">
         <Button
           style={{
-            backgroundColor: getHexString(color.color1),
-            color: getHexString(color.color2),
+            backgroundColor: text,
+            color: bg,
           }}
         >
           Explore Colors
         </Button>
         <Button
           style={{
-            backgroundColor: getHexString(color.color2),
-            color: getHexString(color.color1),
-            border: `1px solid ${getHexString(color.color1)}`,
+            backgroundColor: bg,
+            color: text,
+            border: `1px solid ${text}`,
           }}
         >
           Explore Colors
