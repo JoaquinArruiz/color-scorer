@@ -1,20 +1,14 @@
 import ButtonComponent from "@/components/showcase/button";
+import { lazy, Suspense } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AlertComponent } from "@/components/showcase/alert";
 import { BadgeComponent } from "@/components/showcase/badge";
 import { BreadcrumComponent } from "@/components/showcase/breadcrum";
-import { CalendarComponent } from "@/components/showcase/calendar";
 import { DialogComponent } from "@/components/showcase/dialog";
 import { CardComponent } from "@/components/showcase/card";
 import { CheckboxComponent } from "@/components/showcase/checkbox";
 import { MenubarComponent } from "@/components/showcase/menubar";
 import { SelectComponent } from "@/components/showcase/select";
-import {
-  ChartComponent1,
-  ChartComponent2,
-  ChartComponent3,
-  ChartComponent4,
-} from "@/components/showcase/chart";
 import { CommandComponent } from "@/components/showcase/command";
 import { SliderComponent } from "@/components/showcase/slider";
 import { ProgressComponent } from "@/components/showcase/progress";
@@ -22,6 +16,33 @@ import { InputComponent } from "@/components/showcase/input";
 import { InputOTPComponent } from "@/components/showcase/input-otp";
 import PantoneLogo from "@/components/easter-eggs/PantoneLogo";
 import { usePantoneMatch } from "@/hooks/usePantoneMatch";
+
+// recharts and the calendar are the heaviest dependencies, load them on demand
+const CalendarComponent = lazy(() =>
+  import("@/components/showcase/calendar").then((module) => ({
+    default: module.CalendarComponent,
+  }))
+);
+const loadCharts = () => import("@/components/showcase/chart");
+const ChartComponent1 = lazy(() =>
+  loadCharts().then((module) => ({ default: module.ChartComponent1 }))
+);
+const ChartComponent2 = lazy(() =>
+  loadCharts().then((module) => ({ default: module.ChartComponent2 }))
+);
+const ChartComponent3 = lazy(() =>
+  loadCharts().then((module) => ({ default: module.ChartComponent3 }))
+);
+const ChartComponent4 = lazy(() =>
+  loadCharts().then((module) => ({ default: module.ChartComponent4 }))
+);
+
+const ShowcaseFallback = ({ className = "h-56" }: { className?: string }) => (
+  <div
+    aria-hidden
+    className={`w-full max-w-96 rounded-lg bg-current/5 animate-pulse ${className}`}
+  />
+);
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -52,7 +73,9 @@ function App() {
         <div className="flex flex-col gap-4 items-center">
           <AlertComponent />
           <div className="flex flex-col 3xl:flex-row gap-4 xl:items-center">
-            <CalendarComponent />
+            <Suspense fallback={<ShowcaseFallback className="h-80" />}>
+              <CalendarComponent />
+            </Suspense>
             <CardComponent />
           </div>
         </div>
@@ -71,10 +94,12 @@ function App() {
 
         <div className="flex flex-col gap-4 items-center">
           <MenubarComponent />
-          <ChartComponent4 />
-          <ChartComponent2 />
-          <ChartComponent3 />
-          <ChartComponent1 />
+          <Suspense fallback={<ShowcaseFallback />}>
+            <ChartComponent4 />
+            <ChartComponent2 />
+            <ChartComponent3 />
+            <ChartComponent1 />
+          </Suspense>
         </div>
       </div>
     </div>
