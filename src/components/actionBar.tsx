@@ -1,3 +1,4 @@
+import { formatRatio } from "@/lib/contrast";
 import { Info } from "@phosphor-icons/react";
 import {
   Tooltip,
@@ -42,7 +43,7 @@ const ActionBar = () => {
         </Tooltip>
       </TooltipProvider>
       <span className={`text-2xl font-bold ${scoreColor}`}>
-        {score.toFixed(2)}
+        {formatRatio(score)}
       </span>
       <TooltipProvider>
         <Tooltip>

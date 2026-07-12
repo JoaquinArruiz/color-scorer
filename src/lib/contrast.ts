@@ -59,3 +59,7 @@ export const getWcagRating = (ratio: number): WcagRating => {
   if (ratio >= WCAG_THRESHOLDS.aaLarge) return "AA Large";
   return "Fail";
 };
+
+// truncate instead of rounding so a failing 4.499 is never shown as 4.50
+export const formatRatio = (ratio: number): string =>
+  (Math.floor(ratio * 100) / 100).toFixed(2);

@@ -1,3 +1,4 @@
+import { formatRatio } from "@/lib/contrast";
 import { ArrowsClockwise } from "@phosphor-icons/react";
 import {
   useColor1,
@@ -33,7 +34,7 @@ const Sidebar = () => {
         <h1 className="text-xl font-bold mb-2">Color Scorer</h1>
         <div className="flex items-center gap-2">
           <span className={`text-2xl font-bold ${scoreColor}`}>
-            {score.toFixed(2)}
+            {formatRatio(score)}
           </span>
           <span className="text-sm text-white/70">Contrast Score</span>
         </div>

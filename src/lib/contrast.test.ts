@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { BLACK, WHITE, parseHex, type Color } from "@/lib/color";
 import {
   blendColors,
+  formatRatio,
   getContrastRatio,
   getRelativeLuminance,
   getWcagRating,
@@ -85,5 +86,12 @@ describe("getWcagRating", () => {
     expect(getWcagRating(3.5)).toBe("AA Large");
     expect(getWcagRating(5)).toBe("AA");
     expect(getWcagRating(12)).toBe("AAA");
+  });
+});
+
+describe("formatRatio", () => {
+  it("never rounds a failing ratio up to a passing one", () => {
+    expect(formatRatio(4.499)).toBe("4.49");
+    expect(formatRatio(21)).toBe("21.00");
   });
 });
