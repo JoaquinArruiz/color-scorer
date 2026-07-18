@@ -1,116 +1,91 @@
-import { formatRatio } from "@/lib/contrast";
 import { ArrowsClockwise } from "@phosphor-icons/react";
-import {
-  useColor1,
-  useColor2,
-  swapColors,
-  resetColors,
-} from "@/store/colorStore";
-import { useContrastScore, useColorPairSuggestions } from "@/hooks/useColor";
+import { useColor1, useColor2, swapColors, resetColors } from "@/store/colorStore";
+import { useContrast, useColorPairSuggestions } from "@/hooks/useColor";
 import { Button } from "@/components/ui/button";
 import SidebarColorPicker from "./SidebarColorPicker";
 import { ColorPairSuggestion } from "./ColorPairSuggestion";
-import { useOrientation } from "@/hooks/useOrientation";
+import { ScoreSummary } from "@/components/score/ScoreSummary";
+import { WcagChecks } from "@/components/score/WcagChecks";
+import { WcagInfo } from "@/components/score/WcagInfo";
+
+const SectionTitle = ({ id, children }: { id: string; children: string }) => (
+  <h2
+    id={id}
+    className="text-xs font-medium tracking-wide text-zinc-400 uppercase"
+  >
+    {children}
+  </h2>
+);
 
 const Sidebar = () => {
   const color1 = useColor1();
   const color2 = useColor2();
-  const orientation = useOrientation();
-  const isLandscape = orientation === "landscape";
-
-  const score = useContrastScore(color1, color2);
-  const colorPairSuggestions = useColorPairSuggestions(color1, color2, score);
-
-  const scoreColor =
-    score < 4.5
-      ? "text-red-500"
-      : score < 7
-      ? "text-yellow-500"
-      : "text-green-500";
+  const { ratio } = useContrast();
+  const colorPairSuggestions = useColorPairSuggestions(color1, color2, ratio);
 
   return (
-    <div className="fixed left-0 top-0 w-60 h-screen bg-black/90 text-white flex flex-col z-50 overflow-y-auto ring-1 ring-white/20">
-      <div className="p-4 border-b border-white/20">
-        <h1 className="text-xl font-bold mb-2">Color Scorer</h1>
-        <div className="flex items-center gap-2">
-          <span className={`text-2xl font-bold ${scoreColor}`}>
-            {formatRatio(score)}
-          </span>
-          <span className="text-sm text-white/70">Contrast Score</span>
-        </div>
-      </div>
+    <aside className="fixed inset-y-0 left-0 z-40 flex w-72 flex-col overflow-y-auto border-r border-zinc-800 bg-zinc-900">
+      <header className="flex items-center gap-2.5 px-5 pt-5 pb-4">
+        <img
+          src={`${import.meta.env.BASE_URL}logo.svg`}
+          alt=""
+          className="size-7"
+        />
+        <h1 className="text-lg font-semibold tracking-tight">Color Scorer</h1>
+      </header>
 
-      <div className="p-4 border-b border-white/20">
-        <div className="mb-4">
-          <h2 className="text-sm font-medium mb-2 text-white/70">
-            Background Color
-          </h2>
-          <SidebarColorPicker colorNumber={2} />
+      <section
+        aria-labelledby="score-heading"
+        className="space-y-3 border-b border-zinc-800 px-5 pb-5"
+      >
+        <div className="flex items-center justify-between">
+          <SectionTitle id="score-heading">Contrast ratio</SectionTitle>
+          <WcagInfo />
         </div>
+        <ScoreSummary />
+        <WcagChecks />
+      </section>
 
-        <div className="mb-4">
-          <h2 className="text-sm font-medium mb-2 text-white/70">Text Color</h2>
+      <section
+        aria-labelledby="colors-heading"
+        className="space-y-4 border-b border-zinc-800 px-5 py-5"
+      >
+        <SectionTitle id="colors-heading">Colors</SectionTitle>
+        <div>
+          <h3 className="mb-2 text-sm text-zinc-300">Text</h3>
           <SidebarColorPicker colorNumber={1} />
         </div>
-
-        {/* Better color pair suggestions - only on landscape (PC) */}
-        {isLandscape && colorPairSuggestions.length > 0 && (
-          <div className="mt-4 pt-3 border-t border-white/20">
-            <h2 className="text-sm font-medium mb-2 text-white/70">
-              Better Color Combinations
-            </h2>
-            <div className="space-y-1 max-h-48 overflow-y-auto pr-2">
-              {colorPairSuggestions.map((suggestion, index) => (
-                <ColorPairSuggestion
-                  key={`pair-${index}`}
-                  suggestion={suggestion}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className="flex gap-2 mt-4">
-          <Button
-            onClick={swapColors}
-            className="flex items-center gap-2 bg-white/10 hover:bg-white/20"
-          >
+        <div>
+          <h3 className="mb-2 text-sm text-zinc-300">Background</h3>
+          <SidebarColorPicker colorNumber={2} />
+        </div>
+        <div className="flex gap-2">
+          <Button variant="secondary" size="sm" onClick={swapColors}>
             <ArrowsClockwise size={16} />
-            Swap Colors
+            Swap
           </Button>
-          <Button
-            onClick={resetColors}
-            className="bg-white/10 hover:bg-white/20"
-          >
+          <Button variant="ghost" size="sm" onClick={resetColors}>
             Reset
           </Button>
         </div>
-      </div>
+      </section>
 
-      <div className="p-4 text-sm">
-        <h2 className="font-medium mb-2">WCAG Contrast Requirements</h2>
-        <div className="space-y-3">
-          <div>
-            <h3 className="text-green-400 font-medium">Level AAA (Enhanced)</h3>
-            <p className="text-white/70">• Normal text: 7:1 or higher</p>
-            <p className="text-white/70">• Large text: 4.5:1 or higher</p>
+      {colorPairSuggestions.length > 0 && (
+        <section aria-labelledby="suggestions-heading" className="px-5 py-5">
+          <SectionTitle id="suggestions-heading">
+            Better combinations
+          </SectionTitle>
+          <div className="mt-2 space-y-1">
+            {colorPairSuggestions.map((suggestion, index) => (
+              <ColorPairSuggestion
+                key={`pair-${index}`}
+                suggestion={suggestion}
+              />
+            ))}
           </div>
-          <div>
-            <h3 className="text-yellow-400 font-medium">Level AA (Standard)</h3>
-            <p className="text-white/70">• Normal text: 4.5:1 or higher</p>
-            <p className="text-white/70">• Large text: 3:1 or higher</p>
-          </div>
-          <div>
-            <h3 className="text-red-400 font-medium">
-              Below AA (Insufficient)
-            </h3>
-            <p className="text-white/70">
-              The contrast ratio is below the recommended level
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      )}
+    </aside>
   );
 };
 

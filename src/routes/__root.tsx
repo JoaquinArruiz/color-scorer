@@ -26,7 +26,7 @@ export const Route = createRootRoute({
 
         <div
           className={`flex-1 flex flex-col items-center justify-center  ${
-            isLandscape ? "ml-60" : ""
+            isLandscape ? "ml-72" : ""
           }`}
         >
           <div className="max-w-[1024px] w-full">
