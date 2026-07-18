@@ -1,8 +1,15 @@
-import { ArrowsClockwise } from "@phosphor-icons/react";
-import { useColor1, useColor2, swapColors, resetColors } from "@/store/colorStore";
+import { ArrowUpDown, RotateCcw } from "lucide-react";
+import {
+  useColor1,
+  useColor2,
+  setColor1,
+  setColor2,
+  swapColors,
+  resetColors,
+} from "@/store/colorStore";
 import { useContrast, useColorPairSuggestions } from "@/hooks/useColor";
 import { Button } from "@/components/ui/button";
-import SidebarColorPicker from "./SidebarColorPicker";
+import { ColorField } from "@/components/color/ColorField";
 import { ColorPairSuggestion } from "./ColorPairSuggestion";
 import { ScoreSummary } from "@/components/score/ScoreSummary";
 import { WcagChecks } from "@/components/score/WcagChecks";
@@ -50,23 +57,37 @@ const Sidebar = () => {
         aria-labelledby="colors-heading"
         className="space-y-4 border-b border-zinc-800 px-5 py-5"
       >
-        <SectionTitle id="colors-heading">Colors</SectionTitle>
-        <div>
-          <h3 className="mb-2 text-sm text-zinc-300">Text</h3>
-          <SidebarColorPicker colorNumber={1} />
-        </div>
-        <div>
-          <h3 className="mb-2 text-sm text-zinc-300">Background</h3>
-          <SidebarColorPicker colorNumber={2} />
-        </div>
-        <div className="flex gap-2">
-          <Button variant="secondary" size="sm" onClick={swapColors}>
-            <ArrowsClockwise size={16} />
-            Swap
-          </Button>
-          <Button variant="ghost" size="sm" onClick={resetColors}>
+        <div className="flex items-center justify-between">
+          <SectionTitle id="colors-heading">Colors</SectionTitle>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="-mr-2 h-7 text-zinc-400"
+            onClick={resetColors}
+          >
+            <RotateCcw />
             Reset
           </Button>
+        </div>
+        <div>
+          <h3 className="mb-1.5 text-sm text-zinc-300">Text</h3>
+          <ColorField label="Text" color={color1} onChange={setColor1} />
+        </div>
+        <div className="flex justify-center">
+          <Button
+            variant="secondary"
+            size="icon"
+            className="-my-2 size-8 rounded-full"
+            onClick={swapColors}
+            aria-label="Swap text and background colors"
+            title="Swap colors"
+          >
+            <ArrowUpDown />
+          </Button>
+        </div>
+        <div>
+          <h3 className="mb-1.5 text-sm text-zinc-300">Background</h3>
+          <ColorField label="Background" color={color2} onChange={setColor2} />
         </div>
       </section>
 
