@@ -7,10 +7,9 @@ import {
   swapColors,
   resetColors,
 } from "@/store/colorStore";
-import { useContrast, useColorPairSuggestions } from "@/hooks/useColor";
 import { Button } from "@/components/ui/button";
 import { ColorField } from "@/components/color/ColorField";
-import { ColorPairSuggestion } from "./ColorPairSuggestion";
+import { ColorSuggestions } from "./ColorSuggestions";
 import { ScoreSummary } from "@/components/score/ScoreSummary";
 import { WcagChecks } from "@/components/score/WcagChecks";
 import { WcagInfo } from "@/components/score/WcagInfo";
@@ -27,8 +26,6 @@ const SectionTitle = ({ id, children }: { id: string; children: string }) => (
 const Sidebar = () => {
   const color1 = useColor1();
   const color2 = useColor2();
-  const { ratio } = useContrast();
-  const colorPairSuggestions = useColorPairSuggestions(color1, color2, ratio);
 
   return (
     <aside className="fixed inset-y-0 left-0 z-40 flex w-72 flex-col overflow-y-auto border-r border-zinc-800 bg-zinc-900">
@@ -91,21 +88,10 @@ const Sidebar = () => {
         </div>
       </section>
 
-      {colorPairSuggestions.length > 0 && (
-        <section aria-labelledby="suggestions-heading" className="px-5 py-5">
-          <SectionTitle id="suggestions-heading">
-            Better combinations
-          </SectionTitle>
-          <div className="mt-2 space-y-1">
-            {colorPairSuggestions.map((suggestion, index) => (
-              <ColorPairSuggestion
-                key={`pair-${index}`}
-                suggestion={suggestion}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      <section aria-labelledby="suggestions-heading" className="px-5 py-5">
+        <SectionTitle id="suggestions-heading">Better combinations</SectionTitle>
+        <ColorSuggestions className="mt-3" />
+      </section>
     </aside>
   );
 };

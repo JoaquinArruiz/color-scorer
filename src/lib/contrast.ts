@@ -1,4 +1,4 @@
-import { WHITE, type Color } from "@/lib/color";
+import { getHexString, WHITE, type Color } from "@/lib/color";
 
 export const WCAG_THRESHOLDS = {
   aaLarge: 3,
@@ -63,3 +63,11 @@ export const getWcagRating = (ratio: number): WcagRating => {
 // truncate instead of rounding so a failing 4.499 is never shown as 4.50
 export const formatRatio = (ratio: number): string =>
   (Math.floor(ratio * 100) / 100).toFixed(2);
+
+// opaque hex colors for drawing a pair exactly as it is scored
+export const getPreviewColors = (textColor: Color, bgColor: Color) => {
+  const bg = blendColors(bgColor, WHITE);
+  const text = blendColors(textColor, bg);
+
+  return { text: getHexString(text), bg: getHexString(bg) };
+};
