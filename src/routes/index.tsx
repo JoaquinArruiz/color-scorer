@@ -20,6 +20,7 @@ import {
   PreviewSurface,
   SectionHeading,
 } from "@/components/preview/PreviewSurface";
+import { TextPreview } from "@/components/preview/TextPreview";
 
 // recharts and the calendar are the heaviest dependencies, load them on demand
 const CalendarComponent = lazy(() =>
@@ -56,8 +57,19 @@ function App() {
   const matchedColor = usePantoneMatch();
 
   return (
-    <section aria-labelledby="components-heading">
+    <div className="space-y-8">
       <PantoneLogo matchedColor={matchedColor} />
+
+      <section aria-labelledby="text-heading">
+        <SectionHeading
+          id="text-heading"
+          title="Text preview"
+          description="How your text reads at the sizes WCAG cares about."
+        />
+        <TextPreview />
+      </section>
+
+    <section aria-labelledby="components-heading">
       <SectionHeading
         id="components-heading"
         title="Components"
@@ -114,5 +126,6 @@ function App() {
       </div>
       </PreviewSurface>
     </section>
+    </div>
   );
 }
