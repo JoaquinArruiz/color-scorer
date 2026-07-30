@@ -16,6 +16,10 @@ import { InputComponent } from "@/components/showcase/input";
 import { InputOTPComponent } from "@/components/showcase/input-otp";
 import PantoneLogo from "@/components/easter-eggs/PantoneLogo";
 import { usePantoneMatch } from "@/hooks/usePantoneMatch";
+import {
+  PreviewSurface,
+  SectionHeading,
+} from "@/components/preview/PreviewSurface";
 
 // recharts and the calendar are the heaviest dependencies, load them on demand
 const CalendarComponent = lazy(() =>
@@ -52,8 +56,14 @@ function App() {
   const matchedColor = usePantoneMatch();
 
   return (
-    <div className="text-center p-4 space-y-5 max-w-[1024px] mx-auto">
+    <section aria-labelledby="components-heading">
       <PantoneLogo matchedColor={matchedColor} />
+      <SectionHeading
+        id="components-heading"
+        title="Components"
+        description="Common interface elements drawn only with your two colors."
+      />
+      <PreviewSurface className="space-y-5 p-4 text-center sm:p-6">
 
       <div className="flex flex-col xl:flex-row gap-2 w-full xl:justify-between items-center">
         <BreadcrumComponent />
@@ -102,6 +112,7 @@ function App() {
           </Suspense>
         </div>
       </div>
-    </div>
+      </PreviewSurface>
+    </section>
   );
 }
