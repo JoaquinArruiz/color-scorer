@@ -21,7 +21,7 @@ export const DialogComponent = () => {
             color: text,
           }}
         >
-          Open Dialog
+          Open dialog
         </Button>
       </DialogTrigger>
       <DialogContent
@@ -32,12 +32,10 @@ export const DialogComponent = () => {
       >
         <DialogHeader>
           <DialogTitle style={{ color: text }}>
-            Dialog Title
+            Delete project?
           </DialogTitle>
-          <DialogDescription
-            style={{ color: text, opacity: 0.8 }}
-          >
-            This is a dialog description. You can put any content here.
+          <DialogDescription style={{ color: text }}>
+            This removes the project and its history. You can't undo this.
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

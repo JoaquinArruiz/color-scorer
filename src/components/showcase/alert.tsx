@@ -15,14 +15,14 @@ export const AlertComponent = () => {
       }}
     >
       <Warning size={16} fill={text} />
-      <AlertTitle>Heads up!</AlertTitle>
+      <AlertTitle>Your trial ends in 3 days</AlertTitle>
       <AlertDescription
         style={{
           backgroundColor: bg,
           color: text,
         }}
       >
-        You can add components to your app using the cli.
+        Upgrade your plan to keep access to your projects.
       </AlertDescription>
     </Alert>
   );

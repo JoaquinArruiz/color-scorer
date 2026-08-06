@@ -1,6 +1,6 @@
-import ButtonComponent from "@/components/showcase/button";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import ButtonComponent from "@/components/showcase/button";
 import { AlertComponent } from "@/components/showcase/alert";
 import { BadgeComponent } from "@/components/showcase/badge";
 import { BreadcrumComponent } from "@/components/showcase/breadcrum";
@@ -21,6 +21,7 @@ import {
   SectionHeading,
 } from "@/components/preview/PreviewSurface";
 import { TextPreview } from "@/components/preview/TextPreview";
+import { cn } from "@/lib/utils";
 
 // recharts and the calendar are the heaviest dependencies, load them on demand
 const CalendarComponent = lazy(() =>
@@ -35,18 +36,27 @@ const ChartComponent1 = lazy(() =>
 const ChartComponent2 = lazy(() =>
   loadCharts().then((module) => ({ default: module.ChartComponent2 }))
 );
-const ChartComponent3 = lazy(() =>
-  loadCharts().then((module) => ({ default: module.ChartComponent3 }))
-);
-const ChartComponent4 = lazy(() =>
-  loadCharts().then((module) => ({ default: module.ChartComponent4 }))
-);
 
 const ShowcaseFallback = ({ className = "h-56" }: { className?: string }) => (
   <div
     aria-hidden
-    className={`w-full max-w-96 rounded-lg bg-current/5 animate-pulse ${className}`}
+    className={cn("w-full rounded-lg bg-current/5 animate-pulse", className)}
   />
+);
+
+const ShowcaseGroup = ({
+  title,
+  className,
+  children,
+}: {
+  title: string;
+  className?: string;
+  children: ReactNode;
+}) => (
+  <div className={cn("min-w-0 space-y-3", className)}>
+    <h3 className="text-xs font-semibold tracking-wide uppercase">{title}</h3>
+    {children}
+  </div>
 );
 
 export const Route = createFileRoute("/")({
@@ -69,63 +79,70 @@ function App() {
         <TextPreview />
       </section>
 
-    <section aria-labelledby="components-heading">
-      <SectionHeading
-        id="components-heading"
-        title="Components"
-        description="Common interface elements drawn only with your two colors."
-      />
-      <PreviewSurface className="space-y-5 p-4 text-center sm:p-6">
+      <section aria-labelledby="components-heading">
+        <SectionHeading
+          id="components-heading"
+          title="Components"
+          description="Common interface elements drawn only with your two colors."
+        />
+        <PreviewSurface className="grid gap-x-8 gap-y-10 p-4 sm:p-6 md:grid-cols-2 xl:grid-cols-3">
+          <ShowcaseGroup title="Actions">
+            <div className="flex flex-wrap gap-2">
+              <ButtonComponent label="Primary" filled />
+              <ButtonComponent label="Outline" />
+              <ButtonComponent label="Ghost" noBorder />
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <BadgeComponent label="New" border />
+              <BadgeComponent label="Beta" />
+              <SelectComponent />
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <DialogComponent />
+              <CheckboxComponent />
+            </div>
+          </ShowcaseGroup>
 
-      <div className="flex flex-col xl:flex-row gap-2 w-full xl:justify-between items-center">
-        <BreadcrumComponent />
-        <div className="flex gap-2">
-          <BadgeComponent />
-          <BadgeComponent border />
-          <SelectComponent />
-        </div>
-        <div className="flex gap-2">
-          <ButtonComponent />
-          <ButtonComponent noBorder />
-          <ButtonComponent filled />
-        </div>
-      </div>
+          <ShowcaseGroup title="Navigation">
+            <BreadcrumComponent />
+            <MenubarComponent />
+          </ShowcaseGroup>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 w-full">
-        <div className="flex flex-col gap-4 items-center">
-          <AlertComponent />
-          <div className="flex flex-col 3xl:flex-row gap-4 xl:items-center">
+          <ShowcaseGroup title="Feedback">
+            <AlertComponent />
+            <ProgressComponent />
+          </ShowcaseGroup>
+
+          <ShowcaseGroup title="Forms">
+            <InputComponent />
+            <InputOTPComponent />
+            <SliderComponent />
+          </ShowcaseGroup>
+
+          <ShowcaseGroup title="Content">
+            <CardComponent />
+          </ShowcaseGroup>
+
+          <ShowcaseGroup title="Search">
+            <CommandComponent />
+          </ShowcaseGroup>
+
+          <ShowcaseGroup title="Calendar">
             <Suspense fallback={<ShowcaseFallback className="h-80" />}>
               <CalendarComponent />
             </Suspense>
-            <CardComponent />
-          </div>
-        </div>
+          </ShowcaseGroup>
 
-        <div className="flex flex-col gap-4 items-center">
-          <div className="flex gap-4 items-center">
-            <DialogComponent />
-            <CheckboxComponent />
-          </div>
-          <SliderComponent />
-          <ProgressComponent />
-          <InputComponent />
-          <InputOTPComponent />
-          <CommandComponent />
-        </div>
-
-        <div className="flex flex-col gap-4 items-center">
-          <MenubarComponent />
-          <Suspense fallback={<ShowcaseFallback />}>
-            <ChartComponent4 />
-            <ChartComponent2 />
-            <ChartComponent3 />
-            <ChartComponent1 />
-          </Suspense>
-        </div>
-      </div>
-      </PreviewSurface>
-    </section>
+          <ShowcaseGroup title="Data" className="md:col-span-1 xl:col-span-2">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Suspense fallback={<ShowcaseFallback />}>
+                <ChartComponent1 />
+                <ChartComponent2 />
+              </Suspense>
+            </div>
+          </ShowcaseGroup>
+        </PreviewSurface>
+      </section>
     </div>
   );
 }

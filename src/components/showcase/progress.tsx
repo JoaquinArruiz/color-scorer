@@ -38,7 +38,11 @@ export const ProgressComponent = () => {
         border: `1px solid ${text}`,
       }}
     >
-      {progress >= 100 ? <p>Completed!</p> : <p>Progress: {progress}%</p>}
+      {progress >= 100 ? (
+        <p>Upload complete</p>
+      ) : (
+        <p>Uploading… {progress}%</p>
+      )}
       <Progress
         value={progress}
         className="w-full"

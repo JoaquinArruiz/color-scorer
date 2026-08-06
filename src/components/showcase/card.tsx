@@ -22,17 +22,15 @@ export const CardComponent = () => {
     >
       <CardHeader>
         <CardTitle style={{ color: text }}>
-          Color Harmony Explorer
+          Weekly report
         </CardTitle>
-        <CardDescription
-          style={{ color: text, opacity: 0.8 }}
-        >
-          Discover the perfect color
+        <CardDescription style={{ color: text }}>
+          Updated 2 hours ago
         </CardDescription>
       </CardHeader>
       <CardContent style={{ color: text }}>
         <p>
-          Experience the dynamic interplay of colors as you adjust the palette.
+          Visits grew 12% this week, with most traffic coming from search.
         </p>
       </CardContent>
       <CardFooter className="flex justify-between">
@@ -42,7 +40,7 @@ export const CardComponent = () => {
             color: bg,
           }}
         >
-          Explore Colors
+          View report
         </Button>
         <Button
           style={{
@@ -51,7 +49,7 @@ export const CardComponent = () => {
             border: `1px solid ${text}`,
           }}
         >
-          Explore Colors
+          Dismiss
         </Button>
       </CardFooter>
     </Card>

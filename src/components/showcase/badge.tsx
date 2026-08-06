@@ -2,10 +2,11 @@ import { usePreviewColors } from "@/hooks/usePreviewColors";
 import { Badge } from "../ui/badge";
 
 interface BadgeProps {
+  label?: string;
   border?: boolean;
 }
 
-export const BadgeComponent = ({ border }: BadgeProps) => {
+export const BadgeComponent = ({ label = "Badge", border }: BadgeProps) => {
   const { text, bg } = usePreviewColors();
 
   return (
@@ -16,7 +17,7 @@ export const BadgeComponent = ({ border }: BadgeProps) => {
         border: border ? `2px solid ${text}` : "none",
       }}
     >
-      Badge
+      {label}
     </Badge>
   );
 };

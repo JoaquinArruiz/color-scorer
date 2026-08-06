@@ -2,11 +2,13 @@ import { Button } from "../ui/button";
 import { usePreviewColors } from "@/hooks/usePreviewColors";
 
 interface ButtonComponentProps {
+  label?: string;
   noBorder?: boolean;
   filled?: boolean;
 }
 
 const ButtonComponent = ({
+  label = "Button",
   noBorder = false,
   filled = false,
 }: ButtonComponentProps) => {
@@ -21,7 +23,7 @@ const ButtonComponent = ({
         color: filled ? bg : text,
       }}
     >
-      Button
+      {label}
     </Button>
   );
 };
