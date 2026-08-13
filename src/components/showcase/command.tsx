@@ -30,7 +30,10 @@ export const CommandComponent = () => {
         color: text,
       }}
     >
+      {/* a value that matches no item stops cmdk from auto selecting the first
+          one and scrolling the page down to it on load */}
       <Command
+        defaultValue="none"
         className="rounded-lg border"
         style={{
           backgroundColor: bg,
