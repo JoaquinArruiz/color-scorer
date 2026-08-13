@@ -28,7 +28,7 @@ const Sidebar = () => {
   const color2 = useColor2();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 flex w-72 flex-col overflow-y-auto border-r border-zinc-800 bg-zinc-900">
+    <aside className="fixed inset-y-0 left-0 z-40 hidden w-72 flex-col overflow-y-auto border-r border-zinc-800 bg-zinc-900 lg:flex">
       <header className="flex items-center gap-2.5 px-5 pt-5 pb-4">
         <img
           src={`${import.meta.env.BASE_URL}logo.svg`}
