@@ -1,26 +1,24 @@
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 
-import { MainRadialMenu } from "@/components/radial-menu/MainRadialMenu";
-import ActionBar from "@/components/actionBar";
 import Sidebar from "@/components/Sidebar";
+import { MobileHeader } from "@/components/mobile/MobileHeader";
+import { MobileOverview } from "@/components/mobile/MobileOverview";
+import { MobileColorBar } from "@/components/mobile/MobileColorBar";
 
 export const Route = createRootRoute({
   component: () => (
     <div className="min-h-screen">
       <Sidebar />
+      <MobileHeader />
 
-      <main className="pb-28 lg:pb-0 lg:pl-72">
+      <main className="pb-36 lg:pb-0 lg:pl-72">
         <div className="mx-auto max-w-6xl px-4 py-6 lg:px-8 lg:py-8">
+          <MobileOverview />
           <Outlet />
         </div>
       </main>
 
-      <div className="lg:hidden">
-        <div className="fixed right-4 bottom-7">
-          <MainRadialMenu />
-        </div>
-        <ActionBar />
-      </div>
+      <MobileColorBar />
     </div>
   ),
 });
