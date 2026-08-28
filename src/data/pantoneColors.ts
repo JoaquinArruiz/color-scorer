@@ -5,6 +5,9 @@ export interface PantoneColor {
 }
 
 export const pantoneColors: PantoneColor[] = [
+  { year: 2026, name: "Cloud Dancer", hex: "#F0EEE9" },
+  { year: 2025, name: "Mocha Mousse", hex: "#A47864" },
+  { year: 2024, name: "Peach Fuzz", hex: "#FFBE98" },
   { year: 2023, name: "Viva Magenta", hex: "#BB2649" },
   { year: 2022, name: "Very Peri", hex: "#6667AB" },
   { year: 2021, name: "Ultimate Gray", hex: "#939597" },
