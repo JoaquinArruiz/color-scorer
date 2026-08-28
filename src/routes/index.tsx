@@ -14,8 +14,7 @@ import { SliderComponent } from "@/components/showcase/slider";
 import { ProgressComponent } from "@/components/showcase/progress";
 import { InputComponent } from "@/components/showcase/input";
 import { InputOTPComponent } from "@/components/showcase/input-otp";
-import PantoneLogo from "@/components/easter-eggs/PantoneLogo";
-import { usePantoneMatch } from "@/hooks/usePantoneMatch";
+import { PantoneChip } from "@/components/easter-eggs/PantoneChip";
 import {
   PreviewSurface,
   SectionHeading,
@@ -64,11 +63,9 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
-  const matchedColor = usePantoneMatch();
-
   return (
     <div className="space-y-8">
-      <PantoneLogo matchedColor={matchedColor} />
+      <PantoneChip />
 
       <section aria-labelledby="text-heading">
         <SectionHeading

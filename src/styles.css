@@ -7,6 +7,15 @@
   --breakpoint-mdlg: 52rem;
   --breakpoint-2xl: 100rem;
   --breakpoint-3xl: 125rem;
+
+  --animate-chip-in: chip-in 300ms ease-out;
+
+  @keyframes chip-in {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+  }
 }
 
 /* app frame, kept neutral so it never competes with the colors being tested */
