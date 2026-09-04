@@ -12,11 +12,10 @@ import { usePreviewColors } from "@/hooks/usePreviewColors";
 import {
   Calendar,
   CreditCard,
-  Gear,
-  MagnifyingGlass,
+  Search,
+  Settings,
   User,
-} from "@phosphor-icons/react";
-import { Settings } from "lucide-react";
+} from "lucide-react";
 
 export const CommandComponent = () => {
   const { text, bg } = usePreviewColors();
@@ -64,11 +63,11 @@ export const CommandComponent = () => {
               <span>Calendar</span>
             </CommandItem>
             <CommandItem>
-              <MagnifyingGlass />
+              <Search />
               <span>Search</span>
             </CommandItem>
             <CommandItem>
-              <Gear />
+              <Settings />
               <span>Settings</span>
             </CommandItem>
           </CommandGroup>
