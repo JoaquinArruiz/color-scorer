@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ColorField } from "@/components/color/ColorField";
 import { ColorSuggestions } from "./ColorSuggestions";
+import { ShareButton } from "./ShareButton";
 import { ScoreSummary } from "@/components/score/ScoreSummary";
 import { WcagChecks } from "@/components/score/WcagChecks";
 import { WcagInfo } from "@/components/score/WcagInfo";
@@ -35,7 +36,10 @@ const Sidebar = () => {
           alt=""
           className="size-7"
         />
-        <h1 className="text-lg font-semibold tracking-tight">Color Scorer</h1>
+        <h1 className="flex-1 text-lg font-semibold tracking-tight">
+          Color Scorer
+        </h1>
+        <ShareButton className="-mr-2 size-8 text-zinc-400" />
       </header>
 
       <section

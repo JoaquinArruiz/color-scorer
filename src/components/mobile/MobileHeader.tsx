@@ -1,5 +1,6 @@
 import { ScoreSummary } from "@/components/score/ScoreSummary";
 import { WcagInfo } from "@/components/score/WcagInfo";
+import { ShareButton } from "@/components/ShareButton";
 
 export const MobileHeader = () => (
   <header className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-zinc-800 bg-zinc-950/90 px-4 py-3 backdrop-blur lg:hidden">
@@ -16,6 +17,7 @@ export const MobileHeader = () => (
     <div className="flex items-center gap-1">
       <ScoreSummary size="sm" className="gap-2" />
       <WcagInfo />
+      <ShareButton className="-mr-2 size-8 text-zinc-400" />
     </div>
   </header>
 );
