@@ -4,9 +4,12 @@ import Sidebar from "@/components/Sidebar";
 import { MobileHeader } from "@/components/mobile/MobileHeader";
 import { MobileOverview } from "@/components/mobile/MobileOverview";
 import { MobileColorBar } from "@/components/mobile/MobileColorBar";
+import { useColorUrlSync } from "@/hooks/useColorUrlSync";
 
-export const Route = createRootRoute({
-  component: () => (
+const RootLayout = () => {
+  useColorUrlSync();
+
+  return (
     <div className="min-h-screen">
       <Sidebar />
       <MobileHeader />
@@ -20,5 +23,9 @@ export const Route = createRootRoute({
 
       <MobileColorBar />
     </div>
-  ),
+  );
+};
+
+export const Route = createRootRoute({
+  component: RootLayout,
 });
