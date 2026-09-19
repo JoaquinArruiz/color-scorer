@@ -108,6 +108,9 @@ importers:
       jsdom:
         specifier: ^26.0.0
         version: 26.0.0
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       typescript:
         specifier: ^5.7.2
         version: 5.8.3
