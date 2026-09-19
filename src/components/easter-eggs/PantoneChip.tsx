@@ -30,9 +30,7 @@ export const PantoneChip = () => {
         <p className="text-[11px] font-bold tracking-[0.2em]">PANTONE</p>
         <p className="text-sm leading-tight font-semibold">{match.name}</p>
         <p className="text-xs text-zinc-600">Color of the Year {match.year}</p>
-        <p className="font-mono text-xs text-zinc-600 uppercase">
-          {match.hex}
-        </p>
+        <p className="font-mono text-xs text-zinc-600 uppercase">{match.hex}</p>
       </div>
     </aside>
   );

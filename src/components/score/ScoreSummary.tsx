@@ -57,10 +57,7 @@ export const ScoreSummary = ({ size = "lg", className }: ScoreSummaryProps) => {
           {formatRatio(ratio)}
         </span>
         <span
-          className={cn(
-            "text-zinc-400",
-            size === "lg" ? "text-lg" : "text-sm"
-          )}
+          className={cn("text-zinc-400", size === "lg" ? "text-lg" : "text-sm")}
         >
           :1
         </span>

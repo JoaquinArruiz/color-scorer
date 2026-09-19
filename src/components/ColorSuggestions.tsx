@@ -1,12 +1,7 @@
 import { getHexString } from "@/lib/color";
 import { formatRatio, getPreviewColors } from "@/lib/contrast";
 import { useColorPairSuggestions, useContrast } from "@/hooks/useColor";
-import {
-  setColor1,
-  setColor2,
-  useColor1,
-  useColor2,
-} from "@/store/colorStore";
+import { setColor1, setColor2, useColor1, useColor2 } from "@/store/colorStore";
 import { cn } from "@/lib/utils";
 
 export const ColorSuggestions = ({ className }: { className?: string }) => {

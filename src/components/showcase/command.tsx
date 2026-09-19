@@ -9,13 +9,7 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import { usePreviewColors } from "@/hooks/usePreviewColors";
-import {
-  Calendar,
-  CreditCard,
-  Search,
-  Settings,
-  User,
-} from "lucide-react";
+import { Calendar, CreditCard, Search, Settings, User } from "lucide-react";
 
 export const CommandComponent = () => {
   const { text, bg } = usePreviewColors();

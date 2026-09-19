@@ -44,8 +44,8 @@ export const WcagInfo = () => (
         </div>
       ))}
       <p className="border-t border-zinc-800 pt-3 text-xs text-zinc-400">
-        Large text is 18.66px (14pt) bold or 24px (18pt) regular and larger.
-        The ratio is (L1 + 0.05) / (L2 + 0.05), where L1 and L2 are the relative
+        Large text is 18.66px (14pt) bold or 24px (18pt) regular and larger. The
+        ratio is (L1 + 0.05) / (L2 + 0.05), where L1 and L2 are the relative
         luminance of the lighter and darker color.
       </p>
     </PopoverContent>

@@ -50,8 +50,8 @@ const samples: {
     checks: ["aaNormal", "aaaNormal"],
     content: (
       <p className="text-[16px] leading-relaxed">
-        Text that blends into its background is hard to read for people with
-        low vision or color blindness, and for anyone using a screen in bright
+        Text that blends into its background is hard to read for people with low
+        vision or color blindness, and for anyone using a screen in bright
         sunlight. Body copy should always meet the normal text ratio.
       </p>
     ),
@@ -62,8 +62,8 @@ const samples: {
     checks: ["aaNormal", "aaaNormal"],
     content: (
       <p className="text-[14px] leading-relaxed">
-        Captions, labels and helper text are usually the first to fail. WCAG
-        has no separate rule for them, so they need the normal text ratio too.
+        Captions, labels and helper text are usually the first to fail. WCAG has
+        no separate rule for them, so they need the normal text ratio too.
       </p>
     ),
   },

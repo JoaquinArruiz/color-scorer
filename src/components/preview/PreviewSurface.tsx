@@ -8,7 +8,10 @@ interface PreviewSurfaceProps {
 }
 
 // an area painted with the background color where the theme tokens map to the tested pair
-export const PreviewSurface = ({ className, children }: PreviewSurfaceProps) => {
+export const PreviewSurface = ({
+  className,
+  children,
+}: PreviewSurfaceProps) => {
   const { text, bg } = usePreviewColors();
 
   return (

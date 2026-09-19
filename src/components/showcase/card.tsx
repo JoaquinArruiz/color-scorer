@@ -21,17 +21,13 @@ export const CardComponent = () => {
       className="w-full"
     >
       <CardHeader>
-        <CardTitle style={{ color: text }}>
-          Weekly report
-        </CardTitle>
+        <CardTitle style={{ color: text }}>Weekly report</CardTitle>
         <CardDescription style={{ color: text }}>
           Updated 2 hours ago
         </CardDescription>
       </CardHeader>
       <CardContent style={{ color: text }}>
-        <p>
-          Visits grew 12% this week, with most traffic coming from search.
-        </p>
+        <p>Visits grew 12% this week, with most traffic coming from search.</p>
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button

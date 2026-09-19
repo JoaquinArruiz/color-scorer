@@ -31,9 +31,7 @@ export const DialogComponent = () => {
         }}
       >
         <DialogHeader>
-          <DialogTitle style={{ color: text }}>
-            Delete project?
-          </DialogTitle>
+          <DialogTitle style={{ color: text }}>Delete project?</DialogTitle>
           <DialogDescription style={{ color: text }}>
             This removes the project and its history. You can't undo this.
           </DialogDescription>

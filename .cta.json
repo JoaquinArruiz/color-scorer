@@ -9,7 +9,5 @@
   "git": true,
   "variableValues": {},
   "version": 1,
-  "existingAddOns": [
-    "shadcn"
-  ]
+  "existingAddOns": ["shadcn"]
 }

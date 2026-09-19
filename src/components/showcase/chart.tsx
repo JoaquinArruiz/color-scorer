@@ -1,13 +1,6 @@
 import { usePreviewColors } from "@/hooks/usePreviewColors";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
-import {
-  Line,
-  LineChart,
-  XAxis,
-  YAxis,
-  Bar,
-  BarChart,
-} from "recharts";
+import { Line, LineChart, XAxis, YAxis, Bar, BarChart } from "recharts";
 
 const lineData = [
   { name: "Jan", value: 120 },
@@ -46,15 +39,8 @@ export const ChartComponent1 = () => {
     >
       <ChartContainer config={config}>
         <LineChart data={lineData}>
-          <XAxis
-            dataKey="name"
-            stroke={text}
-            tick={{ fill: text }}
-          />
-          <YAxis
-            stroke={text}
-            tick={{ fill: text }}
-          />
+          <XAxis dataKey="name" stroke={text} tick={{ fill: text }} />
+          <YAxis stroke={text} tick={{ fill: text }} />
           <Line
             type="monotone"
             dataKey="value"
@@ -105,21 +91,9 @@ export const ChartComponent2 = () => {
     >
       <ChartContainer config={config}>
         <BarChart data={barData}>
-          <XAxis
-            dataKey="name"
-            stroke={text}
-            tick={{ fill: text }}
-          />
-          <YAxis
-            stroke={text}
-            tick={{ fill: text }}
-          />
-          <Bar
-            dataKey="value"
-            fill={text}
-            stroke={text}
-            strokeWidth={1}
-          />
+          <XAxis dataKey="name" stroke={text} tick={{ fill: text }} />
+          <YAxis stroke={text} tick={{ fill: text }} />
+          <Bar dataKey="value" fill={text} stroke={text} strokeWidth={1} />
           <ChartTooltip
             content={({ active, payload }) => (
               <ChartTooltipContent

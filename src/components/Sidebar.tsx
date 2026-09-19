@@ -93,7 +93,9 @@ const Sidebar = () => {
       </section>
 
       <section aria-labelledby="suggestions-heading" className="px-5 py-5">
-        <SectionTitle id="suggestions-heading">Better combinations</SectionTitle>
+        <SectionTitle id="suggestions-heading">
+          Better combinations
+        </SectionTitle>
         <ColorSuggestions className="mt-3" />
       </section>
     </aside>

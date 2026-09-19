@@ -17,9 +17,7 @@ const ButtonComponent = ({
     <Button
       style={{
         border: noBorder ? "none" : `1px solid ${text}`,
-        backgroundColor: filled
-          ? text
-          : bg,
+        backgroundColor: filled ? text : bg,
         color: filled ? bg : text,
       }}
     >

@@ -1,10 +1,6 @@
 import { useMemo } from "react";
 import type { Color } from "@/lib/color";
-import {
-  getContrastRatio,
-  getWcagRating,
-  getWcagResult,
-} from "@/lib/contrast";
+import { getContrastRatio, getWcagRating, getWcagResult } from "@/lib/contrast";
 import { getBetterColorPairs } from "@/lib/suggestions";
 import { useColor1, useColor2 } from "@/store/colorStore";
 

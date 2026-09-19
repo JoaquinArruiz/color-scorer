@@ -11,7 +11,9 @@ describe("share url", () => {
       WHITE
     );
 
-    expect(url).toBe("https://example.com/color-scorer/?text=1d4ed880&bg=ffffff");
+    expect(url).toBe(
+      "https://example.com/color-scorer/?text=1d4ed880&bg=ffffff"
+    );
     const { color1, color2 } = readColorsFromUrl(new URL(url).search);
     expect(color1).toEqual({ ...translucent, a: 0.5 });
     expect(color2).toEqual(WHITE);

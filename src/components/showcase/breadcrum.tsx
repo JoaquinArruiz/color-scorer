@@ -31,17 +31,11 @@ export const BreadcrumComponent = () => {
             Home
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator
-          style={{ color: text, opacity: 0.6 }}
-        />
+        <BreadcrumbSeparator style={{ color: text, opacity: 0.6 }} />
         <BreadcrumbItem>
-          <div style={{ color: text, opacity: 0.6 }}>
-            ...
-          </div>
+          <div style={{ color: text, opacity: 0.6 }}>...</div>
         </BreadcrumbItem>
-        <BreadcrumbSeparator
-          style={{ color: text, opacity: 0.6 }}
-        />
+        <BreadcrumbSeparator style={{ color: text, opacity: 0.6 }} />
         <BreadcrumbItem>
           <BreadcrumbLink
             href="#"
@@ -53,13 +47,9 @@ export const BreadcrumComponent = () => {
             Components
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator
-          style={{ color: text, opacity: 0.6 }}
-        />
+        <BreadcrumbSeparator style={{ color: text, opacity: 0.6 }} />
         <BreadcrumbItem>
-          <BreadcrumbPage
-            style={{ color: text, opacity: 0.8 }}
-          >
+          <BreadcrumbPage style={{ color: text, opacity: 0.8 }}>
             Breadcrumb
           </BreadcrumbPage>
         </BreadcrumbItem>
