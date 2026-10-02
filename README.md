@@ -6,24 +6,47 @@ Color Scorer is a web application built with React and TypeScript that helps des
 
 ## Screenshots
 
-## ![App Screenshot](https://i.imgur.com/LE5rWun.png)
+![App Screenshot](https://i.imgur.com/LE5rWun.png)
+
+---
 
 ![App Gif](https://i.imgur.com/wOWBoVH.gif)
 
 ## Features
 
-- Compare two colors for accessibility compliance
-- View contrast ratio scores
-- Easy color selection with color pickers
-- Real-time contrast analysis
+- Compare a text and a background color for accessibility compliance
+- Contrast ratio with pass/fail checks for AA and AAA, for normal and large text
+- Text preview at the sizes WCAG cares about (24px, 16px and 14px)
+- Common UI components drawn only with your two colors
+- Color pickers with hex input, copy buttons and transparency support
+- Suggestions for better color combinations, one click to apply
+- Shareable links: the colors are kept in the URL (`?text=1d4ed8&bg=fef3c7`)
+- Works on desktop and mobile
+- A small easter egg if you pick a Pantone Color of the Year
+
+## How the score is calculated
+
+The contrast ratio follows the [WCAG 2.x definition](https://www.w3.org/TR/WCAG22/#dfn-contrast-ratio):
+
+1. Each color is converted to its relative luminance `L` (sRGB channels linearized, then `0.2126 R + 0.7152 G + 0.0722 B`).
+2. The ratio is `(L1 + 0.05) / (L2 + 0.05)`, where `L1` is the lighter color. It goes from `1:1` (same color) to `21:1` (black on white).
+3. Translucent colors are blended before scoring: the background is placed on a white page, and the text on top of that background. The preview is drawn with these blended colors, so what you see is exactly what is scored.
+4. The ratio is truncated to two decimals, so a failing `4.499` is shown as `4.49` and never rounded up to a passing `4.50`.
+
+| Level | Normal text | Large text |
+| ----- | ----------- | ---------- |
+| AA    | 4.5:1       | 3:1        |
+| AAA   | 7:1         | 4.5:1      |
+
+Large text is 24px (18pt) and up, or 18.66px (14pt) bold and up.
 
 ## Architecture
 
 The application uses a modern React architecture with the following key components:
 
-- **State Management**: TanStack Store for efficient state updates
-- **Color Manipulation**: Utilities for converting between color formats
-- **UI Components**: Leveraging Shadcn for accessible UI components
+- **State Management**: TanStack Store for efficient state updates (`src/store`)
+- **Color Logic**: Framework free, unit tested helpers for parsing colors, contrast and suggestions (`src/lib`)
+- **UI Components**: Leveraging Shadcn for accessible UI components. Inside the preview the theme tokens are remapped to the tested colors, so every component uses only that pair
 
 ## Run Locally
 
@@ -49,6 +72,20 @@ pnpm build
 
 The build artifacts will be stored in the `dist/` directory.
 
+## Scripts
+
+| Command             | Description                                  |
+| ------------------- | -------------------------------------------- |
+| `pnpm dev`          | Start the development server                 |
+| `pnpm build`        | Type check and build for production          |
+| `pnpm test`         | Run the unit tests                           |
+| `pnpm lint`         | Lint the code with ESLint                    |
+| `pnpm format`       | Format the code with Prettier                |
+| `pnpm format:check` | Check the formatting without changing files  |
+| `pnpm deploy`       | Publish `dist/` to GitHub Pages (`gh-pages`) |
+
+Every push and pull request runs the format check, lint, tests and build on GitHub Actions.
+
 ## Tech Stack
 
 - [React 19](https://react.dev/)
@@ -57,6 +94,7 @@ The build artifacts will be stored in the `dist/` directory.
 - [TanStack Store](https://tanstack.com/store) - State management
 - [Tailwind CSS](https://tailwindcss.com/) - Styling
 - [Shadcn UI](https://ui.shadcn.com/) - UI components
+- [Vitest](https://vitest.dev/) - Unit tests
 
 ## Contributing
 
@@ -64,6 +102,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Responsive Design
 
-## ![Phone Screenshot](https://i.imgur.com/Imi3rIN.png)
+![Phone Screenshot](https://i.imgur.com/Imi3rIN.png)
+
+---
 
 ![Smaller Screen](https://i.imgur.com/CTEFXIx.png)
