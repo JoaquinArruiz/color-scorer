@@ -6,11 +6,7 @@ Color Scorer is a web application built with React and TypeScript that helps des
 
 ## Screenshots
 
-![App Screenshot](https://i.imgur.com/LE5rWun.png)
-
----
-
-![App Gif](https://i.imgur.com/wOWBoVH.gif)
+![Desktop screenshot](docs/screenshots/desktop.png)
 
 ## Features
 
@@ -102,8 +98,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Responsive Design
 
-![Phone Screenshot](https://i.imgur.com/Imi3rIN.png)
+On phones the sidebar turns into a header with the score and a bottom panel with both colors.
 
----
-
-![Smaller Screen](https://i.imgur.com/CTEFXIx.png)
+<img src="docs/screenshots/mobile.png" alt="Phone screenshot" width="320" />
