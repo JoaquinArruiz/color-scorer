@@ -82,6 +82,16 @@ The build artifacts will be stored in the `dist/` directory.
 
 Every push and pull request runs the format check, lint, tests and build on GitHub Actions.
 
+## Releasing
+
+The site is deployed to GitHub Pages only when a version tag is pushed. Versions follow [SemVer](https://semver.org/):
+
+```bash
+# bump the version in package.json, commit, then tag and push
+git tag v1.1.0
+git push origin v1.1.0
+```
+
 ## Tech Stack
 
 - [React 19](https://react.dev/)
