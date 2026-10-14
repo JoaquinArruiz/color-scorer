@@ -12,6 +12,8 @@ import { ColorField } from "@/components/color/ColorField";
 import { ColorSuggestions } from "./ColorSuggestions";
 import { QuickFixes } from "./QuickFixes";
 import { ShareButton } from "./ShareButton";
+import { Link } from "@tanstack/react-router";
+import { AUTHOR } from "@/lib/links";
 import { ScoreSummary } from "@/components/score/ScoreSummary";
 import { WcagChecks } from "@/components/score/WcagChecks";
 import { WcagInfo } from "@/components/score/WcagInfo";
@@ -122,6 +124,16 @@ const Sidebar = () => {
         </SectionTitle>
         <ColorSuggestions className="mt-3" />
       </section>
+      <footer className="mt-auto border-t border-zinc-800 px-5 py-4 text-xs text-zinc-500">
+        Built by{" "}
+        <Link
+          to="/about"
+          className="text-zinc-300 underline-offset-2 hover:text-zinc-100 hover:underline focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:outline-none"
+        >
+          {AUTHOR}
+        </Link>{" "}
+        · v{__APP_VERSION__}
+      </footer>
     </aside>
   );
 };
