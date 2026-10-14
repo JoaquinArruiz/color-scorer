@@ -88,3 +88,14 @@ export const getApcaResult = (lc: number): Record<ApcaLevelKey, boolean> => {
 
 export const formatLc = (lc: number): string =>
   (Math.trunc(Math.abs(lc) * 10) / 10).toFixed(1);
+
+export type MethodAgreement = "agree" | "wcag-only" | "apca-only";
+
+// compares wcag aa for normal text with apca content text, the usual rough equivalents
+export const compareMethods = (ratio: number, lc: number): MethodAgreement => {
+  const wcagPass = ratio >= 4.5;
+  const apcaPass = Math.abs(lc) >= 60;
+
+  if (wcagPass === apcaPass) return "agree";
+  return wcagPass ? "wcag-only" : "apca-only";
+};

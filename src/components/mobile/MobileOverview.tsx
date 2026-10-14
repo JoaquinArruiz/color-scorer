@@ -1,5 +1,6 @@
 import { WcagChecks } from "@/components/score/WcagChecks";
 import { ApcaChecks, ApcaInfo, ApcaScore } from "@/components/score/ApcaChecks";
+import { MethodNote } from "@/components/score/MethodNote";
 import { ColorSuggestions } from "@/components/ColorSuggestions";
 import { SectionHeading } from "@/components/preview/PreviewSurface";
 
@@ -21,6 +22,7 @@ export const MobileOverview = () => (
       </div>
       <ApcaScore className="mb-3" />
       <ApcaChecks className="sm:grid-cols-4" />
+      <MethodNote className="mt-3" />
     </section>
     <section aria-labelledby="mobile-suggestions-heading">
       <SectionHeading

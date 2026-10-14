@@ -15,6 +15,7 @@ import { ScoreSummary } from "@/components/score/ScoreSummary";
 import { WcagChecks } from "@/components/score/WcagChecks";
 import { WcagInfo } from "@/components/score/WcagInfo";
 import { ApcaChecks, ApcaInfo, ApcaScore } from "@/components/score/ApcaChecks";
+import { MethodNote } from "@/components/score/MethodNote";
 
 const SectionTitle = ({ id, children }: { id: string; children: string }) => (
   <h2
@@ -65,6 +66,7 @@ const Sidebar = () => {
         </div>
         <ApcaScore />
         <ApcaChecks />
+        <MethodNote />
       </section>
 
       <section

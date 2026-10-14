@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { BLACK, parseHex, WHITE, type Color } from "@/lib/color";
-import { formatLc, getApcaContrast, getApcaResult } from "@/lib/apca";
+import {
+  compareMethods,
+  formatLc,
+  getApcaContrast,
+  getApcaResult,
+} from "@/lib/apca";
 
 const hex = (value: string): Color => parseHex(value)!;
 
@@ -37,5 +42,16 @@ describe("formatLc", () => {
   it("drops the sign and truncates to one decimal", () => {
     expect(formatLc(-107.88)).toBe("107.8");
     expect(formatLc(74.99)).toBe("74.9");
+  });
+});
+
+describe("compareMethods", () => {
+  it("flags pairs that only one method accepts", () => {
+    // mid gray on black passes wcag but apca rates it low
+    expect(compareMethods(4.68, -30.5)).toBe("wcag-only");
+    // white on orange fails wcag but apca rates it readable
+    expect(compareMethods(2.9, -64)).toBe("apca-only");
+    expect(compareMethods(21, 106)).toBe("agree");
+    expect(compareMethods(1.2, 5)).toBe("agree");
   });
 });
