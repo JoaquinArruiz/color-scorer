@@ -14,6 +14,7 @@ import { ShareButton } from "./ShareButton";
 import { ScoreSummary } from "@/components/score/ScoreSummary";
 import { WcagChecks } from "@/components/score/WcagChecks";
 import { WcagInfo } from "@/components/score/WcagInfo";
+import { ApcaChecks, ApcaInfo, ApcaScore } from "@/components/score/ApcaChecks";
 
 const SectionTitle = ({ id, children }: { id: string; children: string }) => (
   <h2
@@ -52,6 +53,18 @@ const Sidebar = () => {
         </div>
         <ScoreSummary />
         <WcagChecks />
+      </section>
+
+      <section
+        aria-labelledby="apca-heading"
+        className="space-y-3 border-b border-zinc-800 px-5 py-5"
+      >
+        <div className="flex items-center justify-between">
+          <SectionTitle id="apca-heading">APCA · WCAG 3 draft</SectionTitle>
+          <ApcaInfo />
+        </div>
+        <ApcaScore />
+        <ApcaChecks />
       </section>
 
       <section

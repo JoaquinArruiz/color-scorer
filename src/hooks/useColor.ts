@@ -1,6 +1,12 @@
 import { useMemo } from "react";
 import type { Color } from "@/lib/color";
-import { getContrastRatio, getWcagRating, getWcagResult } from "@/lib/contrast";
+import {
+  blendPair,
+  getContrastRatio,
+  getWcagRating,
+  getWcagResult,
+} from "@/lib/contrast";
+import { getApcaContrast, getApcaResult } from "@/lib/apca";
 import { getBetterColorPairs } from "@/lib/suggestions";
 import { useColor1, useColor2 } from "@/store/colorStore";
 
@@ -25,6 +31,18 @@ export const useContrast = () => {
     }),
     [ratio]
   );
+};
+
+// apca lightness contrast (Lc) for the colors currently in the store
+export const useApca = () => {
+  const color1 = useColor1();
+  const color2 = useColor2();
+
+  return useMemo(() => {
+    const { text, bg } = blendPair(color1, color2);
+    const lc = getApcaContrast(text, bg);
+    return { lc, result: getApcaResult(lc) };
+  }, [color1, color2]);
 };
 
 export const useColorPairSuggestions = (

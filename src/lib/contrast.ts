@@ -64,10 +64,17 @@ export const getWcagRating = (ratio: number): WcagRating => {
 export const formatRatio = (ratio: number): string =>
   (Math.floor(ratio * 100) / 100).toFixed(2);
 
-// opaque hex colors for drawing a pair exactly as it is scored
-export const getPreviewColors = (textColor: Color, bgColor: Color) => {
+// opaque colors for a pair exactly as it is scored and drawn
+export const blendPair = (textColor: Color, bgColor: Color) => {
   const bg = blendColors(bgColor, WHITE);
   const text = blendColors(textColor, bg);
+
+  return { text, bg };
+};
+
+// opaque hex colors for drawing a pair exactly as it is scored
+export const getPreviewColors = (textColor: Color, bgColor: Color) => {
+  const { text, bg } = blendPair(textColor, bgColor);
 
   return { text: getHexString(text), bg: getHexString(bg) };
 };

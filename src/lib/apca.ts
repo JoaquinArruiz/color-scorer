@@ -72,7 +72,7 @@ export const APCA_LEVELS = [
   {
     key: "spot",
     lc: 30,
-    label: "Spot text & UI",
+    label: "Spot & UI",
     detail: "placeholders, disabled text, icons",
   },
 ] as const;
