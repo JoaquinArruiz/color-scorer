@@ -20,6 +20,7 @@ import {
   SectionHeading,
 } from "@/components/preview/PreviewSurface";
 import { TextPreview } from "@/components/preview/TextPreview";
+import { VisionControls } from "@/components/preview/VisionControls";
 import { cn } from "@/lib/utils";
 
 // recharts and the calendar are the heaviest dependencies, load them on demand
@@ -66,6 +67,8 @@ function App() {
   return (
     <div className="space-y-8">
       <PantoneChip />
+
+      <VisionControls />
 
       <section aria-labelledby="text-heading">
         <SectionHeading
