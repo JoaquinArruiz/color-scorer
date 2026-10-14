@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import {
   RouterProvider,
-  createMemoryHistory,
+  createHashHistory,
   createRouter,
 } from "@tanstack/react-router";
 
@@ -9,10 +9,9 @@ import { routeTree } from "./routeTree.gen";
 
 import "./styles.css";
 
-const memoryHistory = createMemoryHistory({
-  initialEntries: ["/"],
-  initialIndex: 0,
-});
+// the route lives in the hash (#/palette) so pages can be linked on github pages,
+// while the colors stay in the query string
+const hashHistory = createHashHistory();
 
 const router = createRouter({
   routeTree,
@@ -21,7 +20,7 @@ const router = createRouter({
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
-  history: memoryHistory,
+  history: hashHistory,
 });
 
 declare module "@tanstack/react-router" {
