@@ -8,15 +8,23 @@ Color Scorer is a web application built with React and TypeScript that helps des
 
 ![Desktop screenshot](docs/screenshots/desktop.png)
 
+---
+
+![Palette matrix screenshot](docs/screenshots/palette.png)
+
 ## Features
 
 - Compare a text and a background color for accessibility compliance
-- Contrast ratio with pass/fail checks for AA and AAA, for normal and large text
+- WCAG 2 contrast ratio with pass/fail checks for AA and AAA, for normal and large text
+- APCA lightness contrast (the method drafted for WCAG 3) side by side, with a note when the two disagree
+- Quick fixes: the smallest lightness change that reaches AA or AAA while keeping the hue
+- Color blindness simulation (protanopia, deuteranopia, tritanopia and achromatopsia) with the contrast as seen
+- Palette matrix: paste a palette (hex list, CSS variables or design tokens) and check every pair at once
 - Text preview at the sizes WCAG cares about (24px, 16px and 14px)
 - Common UI components drawn only with your two colors
 - Color pickers with hex input, copy buttons and transparency support
 - Suggestions for better color combinations, one click to apply
-- Shareable links: the colors are kept in the URL (`?text=1d4ed8&bg=fef3c7`)
+- Shareable links: colors, palettes and pages are kept in the URL (`?text=1d4ed8&bg=fef3c7`)
 - Works on desktop and mobile
 - A small easter egg if you pick a Pantone Color of the Year
 
@@ -36,12 +44,29 @@ The contrast ratio follows the [WCAG 2.x definition](https://www.w3.org/TR/WCAG2
 
 Large text is 24px (18pt) and up, or 18.66px (14pt) bold and up.
 
+### APCA
+
+[APCA](https://github.com/Myndex/apca-w3) is the contrast method being drafted for WCAG 3. Instead of a ratio it gives a lightness contrast (Lc) from 0 to about 106, and it is polarity aware: dark text on a light background is scored differently than light text on a dark one. Color Scorer uses the APCA-W3 0.0.98G constants and shows these simplified levels:
+
+| Lc  | Use                                         |
+| --- | ------------------------------------------- |
+| 75  | Body text, 18px regular and up              |
+| 60  | Content text, 24px regular or 16px bold     |
+| 45  | Headlines, 36px regular or 24px bold        |
+| 30  | Spot text and UI: placeholders, icons, etc. |
+
+WCAG 2 tends to overrate contrast between dark colors and underrate light text on saturated mid tones, so the app points out pairs where the two methods disagree. APCA is still a draft; WCAG 2 is the standard to meet today.
+
+### Color blindness simulation
+
+Colors are simulated with the matrices from Machado, Oliveira and Fernandes (2009) at full severity, applied in linear RGB. Because the preview only uses the two picked colors, simulating the pair is exact, and the contrast is measured again on the simulated colors.
+
 ## Architecture
 
 The application uses a modern React architecture with the following key components:
 
 - **State Management**: TanStack Store for efficient state updates (`src/store`)
-- **Color Logic**: Framework free, unit tested helpers for parsing colors, contrast and suggestions (`src/lib`)
+- **Color Logic**: Framework free, unit tested helpers for parsing colors, WCAG and APCA contrast, fixes, vision simulation, palettes and suggestions (`src/lib`)
 - **UI Components**: Leveraging Shadcn for accessible UI components. Inside the preview the theme tokens are remapped to the tested colors, so every component uses only that pair
 
 ## Run Locally
