@@ -2,7 +2,7 @@ import { Outlet, createRootRoute } from "@tanstack/react-router";
 
 import Sidebar from "@/components/Sidebar";
 import { MobileHeader } from "@/components/mobile/MobileHeader";
-import { MobileOverview } from "@/components/mobile/MobileOverview";
+import { PageTabs } from "@/components/PageTabs";
 import { MobileColorBar } from "@/components/mobile/MobileColorBar";
 import { useColorUrlSync } from "@/hooks/useColorUrlSync";
 
@@ -16,7 +16,7 @@ const RootLayout = () => {
 
       <main className="pb-36 lg:pb-0 lg:pl-72">
         <div className="mx-auto max-w-6xl px-4 py-6 lg:px-8 lg:py-8">
-          <MobileOverview />
+          <PageTabs className="mb-6" />
           <Outlet />
         </div>
       </main>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parsePalette } from "@/lib/palette";
+import { countPassingPairs, parsePalette, scorePair } from "@/lib/palette";
 
 const names = (input: string) => parsePalette(input).map((color) => color.name);
 const hexes = (input: string) => parsePalette(input).map((color) => color.hex);
@@ -47,5 +47,32 @@ describe("parsePalette", () => {
       (_, index) => `#${index.toString(16).padStart(2, "0")}0000`
     ).join(" ");
     expect(parsePalette(many, 5)).toHaveLength(5);
+  });
+});
+
+describe("scorePair", () => {
+  const [black, white, gray] = parsePalette("#000 #fff #777");
+
+  it("returns the strongest wcag level reached", () => {
+    expect(scorePair(black.color, white.color, "wcag")).toMatchObject({
+      level: 0,
+    });
+    expect(scorePair(gray.color, white.color, "wcag").level).toBe(2);
+  });
+
+  it("scores apca by absolute lightness contrast", () => {
+    const score = scorePair(white.color, black.color, "apca");
+    expect(score.value).toBeGreaterThan(100);
+    expect(score.level).toBe(0);
+  });
+});
+
+describe("countPassingPairs", () => {
+  it("counts every ordered pair except a color on itself", () => {
+    const colors = parsePalette("#000 #fff #777");
+    expect(countPassingPairs(colors, "wcag", 1)).toEqual({
+      passing: 4,
+      total: 6,
+    });
   });
 });

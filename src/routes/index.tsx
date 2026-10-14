@@ -21,6 +21,7 @@ import {
 } from "@/components/preview/PreviewSurface";
 import { TextPreview } from "@/components/preview/TextPreview";
 import { VisionControls } from "@/components/preview/VisionControls";
+import { MobileOverview } from "@/components/mobile/MobileOverview";
 import { cn } from "@/lib/utils";
 
 // recharts and the calendar are the heaviest dependencies, load them on demand
@@ -67,6 +68,7 @@ function App() {
   return (
     <div className="space-y-8">
       <PantoneChip />
+      <MobileOverview />
 
       <VisionControls />
 
