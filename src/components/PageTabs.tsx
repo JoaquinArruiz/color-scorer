@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 const tabs = [
   { to: "/", label: "Pair checker" },
   { to: "/palette", label: "Palette matrix" },
+  { to: "/about", label: "About" },
 ] as const;
 
 export const PageTabs = ({ className }: { className?: string }) => {
