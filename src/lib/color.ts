@@ -48,6 +48,29 @@ export const isSameColor = (color1: Color, color2: Color): boolean =>
   color1.b === color2.b &&
   color1.a === color2.a;
 
+export const getHsl = ({ r, g, b }: Color) => {
+  const red = r / 255;
+  const green = g / 255;
+  const blue = b / 255;
+  const max = Math.max(red, green, blue);
+  const min = Math.min(red, green, blue);
+  const l = (max + min) / 2;
+
+  if (max === min) return { h: 0, s: 0, l };
+
+  const diff = max - min;
+  const s = l > 0.5 ? diff / (2 - max - min) : diff / (max + min);
+  let h =
+    max === red
+      ? (green - blue) / diff + (green < blue ? 6 : 0)
+      : max === green
+        ? (blue - red) / diff + 2
+        : (red - green) / diff + 4;
+  h *= 60;
+
+  return { h, s, l };
+};
+
 // shifts a color in HSL space, hue in degrees and saturation/lightness in 0-1 steps
 export const adjustColor = (
   color: Color,
