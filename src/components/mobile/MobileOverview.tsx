@@ -31,7 +31,8 @@ export const MobileOverview = () => (
         title="Quick fixes"
         description="The smallest change that keeps the hue."
       />
-      <QuickFixes />
+      {/* fixed heights so the page does not jump when the counts change */}
+      <QuickFixes className="min-h-40" />
     </section>
     <section aria-labelledby="mobile-suggestions-heading">
       <SectionHeading
@@ -39,7 +40,7 @@ export const MobileOverview = () => (
         title="Better combinations"
         description="Tap a pair to use it."
       />
-      <ColorSuggestions className="sm:grid-cols-6" />
+      <ColorSuggestions className="min-h-40 content-start sm:min-h-0 sm:grid-cols-6" />
     </section>
   </div>
 );
