@@ -2,6 +2,7 @@ import { WcagChecks } from "@/components/score/WcagChecks";
 import { ApcaChecks, ApcaInfo, ApcaScore } from "@/components/score/ApcaChecks";
 import { MethodNote } from "@/components/score/MethodNote";
 import { ColorSuggestions } from "@/components/ColorSuggestions";
+import { QuickFixes } from "@/components/QuickFixes";
 import { SectionHeading } from "@/components/preview/PreviewSurface";
 
 // what the desktop sidebar shows, laid out above the preview on small screens
@@ -23,6 +24,14 @@ export const MobileOverview = () => (
       <ApcaScore className="mb-3" />
       <ApcaChecks className="sm:grid-cols-4" />
       <MethodNote className="mt-3" />
+    </section>
+    <section aria-labelledby="mobile-fixes-heading">
+      <SectionHeading
+        id="mobile-fixes-heading"
+        title="Quick fixes"
+        description="The smallest change that keeps the hue."
+      />
+      <QuickFixes />
     </section>
     <section aria-labelledby="mobile-suggestions-heading">
       <SectionHeading

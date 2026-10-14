@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ColorField } from "@/components/color/ColorField";
 import { ColorSuggestions } from "./ColorSuggestions";
+import { QuickFixes } from "./QuickFixes";
 import { ShareButton } from "./ShareButton";
 import { ScoreSummary } from "@/components/score/ScoreSummary";
 import { WcagChecks } from "@/components/score/WcagChecks";
@@ -105,6 +106,14 @@ const Sidebar = () => {
           <h3 className="mb-1.5 text-sm text-zinc-300">Background</h3>
           <ColorField label="Background" color={color2} onChange={setColor2} />
         </div>
+      </section>
+
+      <section
+        aria-labelledby="fixes-heading"
+        className="space-y-3 border-b border-zinc-800 px-5 py-5"
+      >
+        <SectionTitle id="fixes-heading">Quick fixes</SectionTitle>
+        <QuickFixes />
       </section>
 
       <section aria-labelledby="suggestions-heading" className="px-5 py-5">
